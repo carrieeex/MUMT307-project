@@ -35,7 +35,7 @@ ylabel('Amplitude');
 title('original sound file');
 grid on
 
-N = 2^13;                       % length of FFT 
+N = 2^14;                       % length of FFT 
 iStart = 10^4;                  % starting sample of the FFT
 sigIdx = iStart:N+iStart-1;     % index of the FFT
 Y = fft(y(sigIdx));             % FFT
@@ -52,16 +52,15 @@ title('Frequency Spectrum');
 %% find peaks of the spectrum using parabolic interpolation
 % ref: https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html
 
-Y = abs(Y(1:ceil(N/2))); % throw away redundant half of fft
+Y = abs(Y(1:ceil(N/2))); % keep half of fft
 Xi = [];
-threshold = 10^(28.1/20);  % 30 dB converted to linear value
+threshold = 10^(40/20);  % x dB converted to linear value
 for n = 2:length(Y)-2    % search for peak indices
   if Y(n+1) <= Y(n) && Y(n-1) < Y(n) && Y(n) > threshold
     Xi = [Xi, n];
   end
 end
 
-% Perform parabolic interpolation of peaks
 Yi = zeros( size( Xi ) );
 for n = 1:length(Xi)
   alpha = Y(Xi(n)-1);
@@ -88,14 +87,17 @@ Yi = Yi(1:K);
 
 [Pxx,f2] = periodogram(y(sigIdx),rectwin(N),[],fs);
 for i = 1:length(Xi)
+    %figure(1)
+    %xline(Xi(i))
     fl = Xi(i)-10;
     fr = Xi(i)+10;
     bw(i) = powerbw(Pxx(f2>fl & f2 < fr), f2(f2>fl & f2 < fr));
 end
 bw;
-B = 0.3*bw;
+factor = 0.65;
+B = factor*bw;
 
-%% IIR rilter parameters
+%% IIR filter parameters
 
 r = exp(-pi*B/fs);
 b0 = Yi;

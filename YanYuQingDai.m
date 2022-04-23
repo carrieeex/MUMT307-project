@@ -6,6 +6,8 @@
 % A Matlab script to write a song with audio files.
 % The song [Yan Yu Qing Dai] was written by Shi, Lei.
 % Shi Lei's page: https://slwmy.bandcamp.com/
+% Shi Lei's intro in Chinese (the first artist): 
+% http://www.xuansoundhandpan.com/artist.asp
 % Original piece: https://www.youtube.com/watch?v=PhtP8YuxzAQ
 % The numbered music notation was obtained from 
 % https://www.bilibili.com/video/BV1Zk4y1r75d?share_source=copy_web
