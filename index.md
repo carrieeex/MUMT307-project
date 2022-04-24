@@ -48,14 +48,14 @@ A handpan instrument is a group of metallic percussion instruments played with h
 </p>
 <p>&nbsp;</p>
 <p align="center">
-  <img height="300" src="./img/HangScales.png" alt="Figure 5. Sample tuning scales.">
+  <img height="400" src="./img/HangScales.png" alt="Figure 5. Sample tuning scales.">
   <figcaption align = "center"><b>Figure 5. Sample tuning scales.</b></figcaption>
 </p>
 
 The playing technique of a handpan is to strike it with the hand, either using fingertips or the palm. Different manner can considerably influence the quality of the sounds: the spectral content, the decay time, and other features of the amplitude envelope depend on the intensity of the hit [[9](https://acoustics.org/pressroom/httpdocs/155th/wessel.htm)]. Tapping with a rubber mallet or just fingertips on a single note area can excite the fundamental, the second, and the third harmonics, as illustrated in Figure 6. The harmonic ratio of frequencies is 1:2:3, and striking one note can also make other notes vibrate [[11](https://doi.org/10.1063/1.3099586)].
 
 <p align="center">
-  <img height="400" src="./img/Spectrum_Kurd2.png" alt="Figure 6. Sound spctra.">
+  <img height="550" src="./img/Spectrum_Kurd2.png" alt="Figure 6. Sound spctra.">
   <figcaption align = "center"><b>Figure 6. Sound spectra of each note in a handpan as shown in Figure 4. Each spectrum shows the ratio of harmonic frequencies in 1:2:3, and some have fourth harmonics. Small peaks in the ratio of 82 Hz (near E2) are also visible in each spectrum, which is the frequency of the cavity resonance.</b></figcaption>
 </p>
 
