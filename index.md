@@ -43,7 +43,7 @@ A handpan instrument is a group of metallic percussion instruments played with h
 </p>
 <p>&nbsp;</p>
 <p align="center">
-  <img height=350" src="./img/HandpanKurdD.jpg" alt="Figure 4. A sample tuning scale beginning with D3 note in the center."> 
+  <img height="350" src="./img/HandpanKurdD.jpg" alt="Figure 4. A sample tuning scale beginning with D3 note in the center."> 
   <figcaption align = "center"><b>Figure 4. A sample tuning scale beginning with D3 note in the center. Eight note areas are arranged around the center note area of the handpan.</b></figcaption>
 </p>
 <p>&nbsp;</p>
