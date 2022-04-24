@@ -437,14 +437,27 @@ The synthesized Note B4 excited by residual:
 [recorded sample](./sounds-original/s0-d2.mp3)
 https://talk.commonmark.org/t/embedded-audio-file-from-github-repo/3558
 -->
+***
+
+A song [Yan Yu Qing Dai](https://www.youtube.com/watch?v=PhtP8YuxzAQ) [烟雨青黛](https://www.ximalaya.com/yinyue/14671846/80535737) written by Chinese musician Shi, Lei was also recreated with synthesized sounds:
+<audio controls="controls" src="./YanYuQingDai.m4a">
+<p>YanYuQingDai.</p>
+</audio>
 
 ## Discussion
 
+The synthesized handpan sound is very realistic, and one can barely distinguish it from the recorded sample. The frequency spectrum of each note was analyzed to find peaks in frequency and amplitude, and the bandwidth was successfully obtained from the MATLAB functions. Modal synthesis provides a simple and efficient solution to synthesize this type of metallic percussion instrument. So it can be applied to other impulsively excited objects. One of the challenges was to obtain the clean recorded samples of the impulse response of each note, as no handpan was available on hand. Most online recordings have multiple notes playing successively or simultaneously, or only one or two impulse responses from the same handpan were published. Some tapes are noisy, and the results would not be ideal as the noise could also be synthesized. Removing noise would lose some of the spectral content of the sound. Luckily, a set of relatively clean recorded samples was found on a GitHub repo.
+
+If one wants to record the impulse response by themselves, the experimental set-up can be found in Eyal Alon's master's thesis, "Analysis and Synthesis of the Handpan Sound," which details the recording procedure, analysis and synthesis of handpan sound.
+
+Another challenge was to adjust the bandwidth. If one uses the bandwidth obtained directly from the  `powerbw()` built-in function in MATLAB, the decay time would be too long or too short, resulting in an undesired sound. Therefore, a fudge factor was applied to the bandwidth to adjust the values. Each note has a different fudge factor, and the effect can be visualized by looking at the time domain of the impulse response of the resonance filters.
+
+Moreover, if the impulse response were not excited by the residual from the original sample, the synthesized sound would not be so realistic; it is more soft and artificial, as one can hear from the recordings in the above section.
 
 
 ## Conclusion
 
-
+The handpan sound was successfully recreated with the modal synthesis technique using resonance filters, and a song was generated using the synthesized sound. It provides a simple yet efficient way to simulate impulse responses of objects. The model can be expanded to every handpan sound or other instrument. Then it can be fed into a computer program (such as Max/MSP, Ariduino IDE, etc.) to simulate a real handpan on a physical model. One example would be the [Mini Handpan](https://carrieeex.github.io/MUMT306-project/) project I did last year for MUMT 306. Another implementation is to build a virtual model as it exists [here](https://www.haganenote.com/vst/handpan-virtual-instrument.html). This virtual handpan is ideal for practice and choosing the desired scale before buying, as a physical handpan is expensive and heavy.
 
 ***
 
@@ -481,28 +494,6 @@ https://talk.commonmark.org/t/embedded-audio-file-from-github-repo/3558
 [15]: "Power Bandwidth - MATLAB Powerbw." Accessed April 22, 2022. https://www.mathworks.com/help/signal/ref/powerbw.html.
 
 [16]: "Periodogram Power Spectral Density Estimate - MATLAB Periodogram." Accessed April 22, 2022. https://www.mathworks.com/help/signal/ref/periodogram.html.
-
-
-
-
-***
-
-[77]: "Ayasa - Acquire an Instrument". Accessed 22 April 2022. https://ayasainstruments.com/acquire-an-ayasa.
-
-[88]: Paslier, Sylvain. "How Are Handpans Made? A Step-by-Step Guide". sylvainpasliermusic, 22 August 2019. https://www.sylvainpasliermusic.com/post/how-are-handpans-made.
-
-[99]: Scavone, Gary P. "MIDI". Accessed 1 December 2021. https://www.music.mcgill.ca/~gary/306/week2/node3.html.
-
-[100]: Morrison, Andrew, and Thomas D. Rossing. "The Extraordinary Sound of the Hang". Physics Today 62, no. 3 (March 2009): 66–67. https://doi.org/10.1063/1.3099586.
-
-[111]: Scavone, Gary P. "Interfacing the Arduino to Max/MSP". Accessed 1 December 2021. https://www.music.mcgill.ca/~gary/306/week5/node7.html.
-
-[122]: Gautschi, Gustav. "Introduction". In Piezoelectric Sensorics: Force Strain Pressure Acceleration and Acoustic Emission Sensors Materials and Amplifiers, edited by Gustav Gautschi, 1–3. Berlin, Heidelberg: Springer, 2002. https://doi.org/10.1007/978-3-662-04732-3_1.
-
-[133]: "MakerHawk 4pcs Analog Ceramic Piezo Vibration Sensor Module 3.3V/5V for Arduino DIY Kit: Amazon.Com: Industrial & Scientific". Accessed 1 December 2021. https://www.amazon.com/MakerHawk-Analog-Ceramic-Vibration-Arduino/dp/B07KS5NV4V.
-
-[144]: Arduino Online Shop. "Arduino Mega 2560 Rev3". Accessed 1 December 2021. http://store-usa.arduino.cc/products/arduino-mega-2560-rev3.
-
 
 ## Appendix 
 
