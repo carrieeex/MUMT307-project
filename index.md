@@ -433,7 +433,6 @@ The synthesized Note B4 excited by residual:
 <p>Note B4 - recreated.</p>
 </audio>
 
-
 <!---
 [recorded sample](./sounds-original/s0-d2.mp3)
 https://talk.commonmark.org/t/embedded-audio-file-from-github-repo/3558

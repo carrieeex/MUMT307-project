@@ -21,7 +21,7 @@ noRes = '-noRes'; % add ,noRes after the file name to play the song
 
 [y0, fs] = audioread( strcat(fileLoc2,'s0-d2',ext) );
 [y1, fs] = audioread( strcat(fileLoc2,'s3-A3',ext) );
-[y2, fs] = audioread( strcat(fileLoc2,'s4-A#3',ext) );
+[y2, fs] = audioread( strcat(fileLoc2,'s4-Bb3',ext) );
 [y3, fs] = audioread( strcat(fileLoc2,'s6-C4',ext) );
 [y4, fs] = audioread( strcat(fileLoc2,'s8-D4',ext) );
 [y5, fs] = audioread( strcat(fileLoc2,'s10-E4',ext) );
@@ -29,9 +29,20 @@ noRes = '-noRes'; % add ,noRes after the file name to play the song
 [y7, fs] = audioread( strcat(fileLoc2,'s13-G4',ext) );
 [y8, fs] = audioread( strcat(fileLoc2,'s15-A4',ext) );
 
-bpm = 144;
+g = 0.36;
+y0 = g*y0;
+y1 = g*y1;
+y2 = g*y2;
+y3 = g*y3;
+y4 = g*y4;
+y5 = g*y5;
+y6 = g*y6;
+y7 = g*y7;
+y8 = g*y8;
+
+bpm = 108;
 dt = 60/bpm;
-dt = dt/2;
+dt = dt/4;
 
 %% intro
 sound(y0, fs)
