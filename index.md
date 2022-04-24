@@ -51,35 +51,11 @@ The playing technique of a handpan is to strike it with the hand, either using f
 
 Since each note is impulsively excited, the handpan can be modelled with a bank of resonance filters, and each is centred at particular frequency components. To obtain the parameters (gains and decay times) for these filters, one can tap each note area slightly with one hand or a rubber mallet and record the impulse response. A set of recorded samples are stored on the Github repo [12]. Performing FFT (Fast Fourier Transform) on each sample and finding peaks of the spectra gives information on the central frequency and amplitude of each vibration mode. We can then estimate the peak bandwidth at a level of -3 dB to find the pole radius, which relates to the quality factor $Q$ and the decay constant $\alpha$. The feedback coefficients of a second-order IIR (infinite impulse response) filter can also be calculated to create an impulse response. Finally, we can excite the impulse response with a residual obtained from the original signal. The detailed procedure with equations is listed below, and the MATLAB script is attached in Appendix.
 
+### Parabolic Interpolation of Spectral Peaks
+
 
 
 ***
-
-If we record the decaying sound of a string or other impulsively excited object, we can interpret spectral magnitude peaks as natural modes of vibration, which can each be represented as exponentially decaying sinusoids defined by:
-
-The HANG can be modeled with filters centered at each of the frequency components; the gains and decay times for these resonant filters can be estimated from the analysis of multiple playing strokes. From the analysis it is possible to synthesize realistic sounds of the HANG. This is the known synthesis of this interesting and popular instrument. [8]
-
-
-
-When struck with the hand, each note area of the hang vibrates in a rich complement of modes. In particular, the three lowest-frequency modes—the fundamental and the second and third harmonics—are all strongly excited. The frequencies of those modes are in the ratio of 1:2:3, and that harmonic relation leads to an interesting effect: Striking one note can cause another note to vibrate. The waves created when the hang is struck are not confined to a single note area. Rather, they initially propagate outward through the steel of the instrument and are eventually reflected many times off the hang’s boundaries. If any other notes have resonances at frequencies near those in the spectrum of the struck note, as is often the case, then modes of the other notes will be excited and the hang will vibrate at the corresponding frequencies. [10]
-
-Sound spectra Sound spectra were recorded using a Tekronix FFT analyzer controlled by a laptop computer. Each note area was tapped lightly with a rubber mallet. The spectra for all 8 notes are shown in Figure 9. Each spectrum shows the three principal harmonics, which have frequencies in the ratios 1:2:3. Also visible in each spectrum is a small peak at 85 Hz, the frequency of the cavity resonance (near F2).
-
-Playing techniques
-
-The manner in which the HANG is played has considerable influence on the quality of the sounds that it produces. Playing more or less intensely influences the spectral content, the decay time, and additional features of the amplitude envelope.
-
-When playingfff not only is the overall amplitude dramatically changed but the loud note rings longer than the soft one. The soft note has but two audibly significant components in an octave relationship whereas the intense notes higher frequency components are inharmonic with respect to the fundamental. In addition, the intense note shows significant amplitude modulations due to beating.
-
-An important set of playing techniques involves playing a HANG note with a rapid succession of impacts. This can be accomplished in a variety of ways, the most elementary of which involves playing single stroke roles with the fingers of alternating hands. As each stroke arrives it finds the HANG in a different state. As a result, each of the notes in the roll has a slightly different timbre. This timbral variation provides a quality to the sound that cannot be achieved by repeating the same sample of a HANG to simulate a roll. To demonstrate this effect we modeled the HANG with filters centered at each of the frequency components. The gains and decay times for these resonate filters were estimated from the analysis. We demonstrate the difference in sound quality by comparing the free running set of resonate filters with a version of the model where the state of the filters remains constant at each impulse.
-
-Another effective way to play a rapid succession of single notes is to use a technique analogous to the way a percussionist using sticks plays a flam. This can be accomplished by placing the middle finger just ahead of the index finger when striking the HANG. The arrival times of the two fingers can be controlled by how far they are spaced apart prior to the impact. A variety of timbres can be obtained by controlling the finger spacing in this manner. More complex effects, such as a flurry of notes, can be obtained by arranging the fingers so that the baby finger strikes first followed by the ring, middle, and index fingers in rapid succession.
-
-The HANG's center note with its outwardly extending boss invites a variety of techniques including striking it with a larger surface of hand as with flattened fingers or the base of the palm.
-
-One of the most important aspects of HANG technique is how long the finger or hand remains in contact with the instrument during the stroke. The longer the contact time the greater the damping effect. Many beginning players have difficulty striking the instrument and pulling away quickly making it hard for them to produce notes that ring. One tip is to actually practice making the up stroke rapid separately from the down stoke and then combining them to effectively control the contact time with the instrument.
-
-The HANG can be modeled with filters centered at each of the frequency components; the gains and decay times for these resonant filters can be estimated from the analysis of multiple playing strokes. From the analysis it is possible to synthesize realistic sounds of the HANG. This is the known synthesis of this interesting and popular instrument. [8]
 
 
 
