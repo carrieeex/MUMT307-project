@@ -67,11 +67,11 @@ Since each note is impulsively excited, the handpan can be modelled with a bank 
 
 In order to simulate a decaying waveform, a digital resonator centred at frequency f can be designed to create an impulse response. This was achieved using a second-order IIR filter with feedback coefficients of a1 and a2, with the following specifications [[4](https://www.music.mcgill.ca/~gary/307/week10/node4.html)]:
 
-- difference equation of a second-order filter: ![y[n] = b0*x[n] + b1*x[n - 1] + b2*x[n - 2] - a1*y[n - 1] - a2*y[n - 2], n = 0, 1, 2, ...,](http://www.sciweavers.org/tex2img.php?eq=y%5Bn%5D%20%3D%20b_%7B0%7D%20x%5Bn%5D%20%2B%20b_%7B1%7D%20x%5Bn%20-%201%5D%20%2B%20b_%7B2%7D%20x%5Bn%20-%202%5D%20-%20a_%7B1%7D%20y%5Bn%20-%201%5D%20-%20a_%7B2%7D%20y%5Bn%20-%202%5D%2C%20n%20%3D%200%2C%201%2C%202%2C%20...%2C%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+- difference equation of a second-order filter: y[n] = b0 * x[n] + b1 * x[n - 1] + b2 * x[n - 2] - a1 * y[n - 1] - a2 * y[n - 2], n = 0, 1, 2, ...,
 - b0 = peak amplitude,
-- ![a1 = -2*r*cos(2*pi*f*Ts)](http://www.sciweavers.org/tex2img.php?eq=a_1%20%3D%20-2%20r%20%5Ccos%28%202%20%5Cpi%20f%20T_s%20%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), r = pole radius, Ts = sample period = 1/fs
-- ![a2 = r^2](http://www.sciweavers.org/tex2img.php?eq=a_2%20%3D%20r%5E2%0A&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=),
-- ![r = e^(-pi*B*Ts)](http://www.sciweavers.org/tex2img.php?eq=r%20%3D%20e%5E%7B-%20%5Cpi%20B%20T_s%7D%0A&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), B = 3dB-bandwidth [[13](https://ccrma.stanford.edu/~jos/fp/Resonator_Bandwidth_Terms_Pole.html)].
+- a1 = -2 * r * cos(2 * pi * f * Ts), r = pole radius, Ts = sample period = 1/fs
+- a2 = r^2,
+- r = e^(-pi * B * Ts), B = 3dB-bandwidth [[13](https://ccrma.stanford.edu/~jos/fp/Resonator_Bandwidth_Terms_Pole.html)].
 
 Therefore, we need to extract each peak's frequency and amplitude and find their 3-dB bandwidth.
 
@@ -80,6 +80,12 @@ Therefore, we need to extract each peak's frequency and amplitude and find their
 - $a_2 = r^2$
 - $ B = - \frac{\ln(R)}{\pi T} $
 - $ r = e^{- \pi B T_s}$
+
+- difference equation of a second-order filter: ![y[n] = b0*x[n] + b1*x[n - 1] + b2*x[n - 2] - a1*y[n - 1] - a2*y[n - 2], n = 0, 1, 2, ...,](http://www.sciweavers.org/tex2img.php?eq=y%5Bn%5D%20%3D%20b_0%20x%5Bn%5D%20%2B%20b_1%20x%5Bn%20-%201%5D%20%2B%20b_2%20x%5Bn%20-%202%5D%20-%20a_1%20y%5Bn%20-%201%5D%20-%20a_2%20y%5Bn%20-%202%5D%2C%20n%20%3D%200%2C%201%2C%202%2C%20...&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+- b0 = peak amplitude,
+- ![a1 = -2*r*cos(2*pi*f*Ts)](http://www.sciweavers.org/tex2img.php?eq=a_1%20%3D%20-2%20r%20%5Ccos%28%202%20%5Cpi%20f%20T_s%20%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), r = pole radius, Ts = sample period = 1/fs
+- ![a2 = r^2](http://www.sciweavers.org/tex2img.php?eq=a_2%20%3D%20r%5E2%0A&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=),
+- ![r = e^(-pi*B*Ts)](http://www.sciweavers.org/tex2img.php?eq=r%20%3D%20e%5E%7B-%20%5Cpi%20B%20T_s%7D%0A&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), B = 3dB-bandwidth [[13](https://ccrma.stanford.edu/~jos/fp/Resonator_Bandwidth_Terms_Pole.html)].
 -->
 
 ### Parabolic Interpolation of Spectral Peaks
@@ -91,9 +97,12 @@ The frequency resolution of an N-point DFT (Discrete Fourier Transform) is fs/N 
   <figcaption align = "center"><b>Figure 7. Illustration of parabolic interpolation using the three most significant values around a peak.</b></figcaption>
 </p>
 
-A parabola can be written as ![y(x) = a(x-p)^2 + b](http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), in which p is the peak location in bins, b is the peak amplitude in dB, and a is the curvature. The peak location can be extracted from the three nearest samples y(-1) = ![\alpha](http://www.sciweavers.org/tex2img.php?eq=%5Calpha&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), y(0) = ![\beta](http://www.sciweavers.org/tex2img.php?eq=%5Cbeta&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) and y(1) = ![\gamma](http://www.sciweavers.org/tex2img.php?eq=%5Cgamma&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) as ![$p = (0.5) *(\alpha-\gamma) / (\alpha-2*\beta+\gamma) \in [-1/2,1/2]$](http://www.sciweavers.org/tex2img.php?eq=p%3D%5Cfrac%7B1%7D%7B2%7D%5Cfrac%7B%5Calpha-%5Cgamma%7D%7B%5Calpha-2%5Cbeta%2B%5Cgamma%7D%20%5Cin%20%5B-1%2F2%2C1%2F2%5D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=). Therefore, the estimated peak value y(p) is ![$y(p) = \beta - 0.25 * (\alpha - \gamma) * p$](http://www.sciweavers.org/tex2img.php?eq=y%28p%29%20%3D%20%5Cbeta%20-%20%5Cfrac%7B1%7D%7B4%7D%28%5Calpha%20-%20%5Cgamma%29p&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) [[14](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
+A parabola can be written as y(x) = a(x-p)^2 + b, in which p is the peak location in bins, b is the peak amplitude in dB, and a is the curvature. The peak location can be extracted from the three nearest samples y(-1) = alpha, y(0) = beta, and y(1) = gamma as ![$p = (0.5) *(\alpha-\gamma) / (\alpha-2*\beta+\gamma) \in [-1/2,1/2]$](http://www.sciweavers.org/tex2img.php?eq=p%3D%5Cfrac%7B1%7D%7B2%7D%5Cfrac%7B%5Calpha-%5Cgamma%7D%7B%5Calpha-2%5Cbeta%2B%5Cgamma%7D%20%5Cin%20%5B-1%2F2%2C1%2F2%5D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=). Therefore, the estimated peak value y(p) is ![$y(p) = \beta - 0.25 * (\alpha - \gamma) * p$](http://www.sciweavers.org/tex2img.php?eq=y%28p%29%20%3D%20%5Cbeta%20-%20%5Cfrac%7B1%7D%7B4%7D%28%5Calpha%20-%20%5Cgamma%29p&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) [[14](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
 
 <!--
+A parabola can be written as ![y(x) = a(x-p)^2 + b](http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), in which p is the peak location in bins, b is the peak amplitude in dB, and a is the curvature. The peak location can be extracted from the three nearest samples y(-1) = ![\alpha](http://www.sciweavers.org/tex2img.php?eq=%5Calpha&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), y(0) = ![\beta](http://www.sciweavers.org/tex2img.php?eq=%5Cbeta&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) and y(1) = ![\gamma](http://www.sciweavers.org/tex2img.php?eq=%5Cgamma&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) as ![$p = (0.5) *(\alpha-\gamma) / (\alpha-2*\beta+\gamma) \in [-1/2,1/2]$](http://www.sciweavers.org/tex2img.php?eq=p%3D%5Cfrac%7B1%7D%7B2%7D%5Cfrac%7B%5Calpha-%5Cgamma%7D%7B%5Calpha-2%5Cbeta%2B%5Cgamma%7D%20%5Cin%20%5B-1%2F2%2C1%2F2%5D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=). Therefore, the estimated peak value y(p) is ![$y(p) = \beta - 0.25 * (\alpha - \gamma) * p$](http://www.sciweavers.org/tex2img.php?eq=y%28p%29%20%3D%20%5Cbeta%20-%20%5Cfrac%7B1%7D%7B4%7D%28%5Calpha%20-%20%5Cgamma%29p&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) [[14](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
+
+
 <img src="http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=" alt="test" style="height: 100px; width:100px;"/>
 
 <p align="center">
@@ -239,11 +248,13 @@ https://talk.commonmark.org/t/embedded-audio-file-from-github-repo/3558
 
 ## Discussion
 
+
+
 ## Conclusion
 
+
+
 ***
-
-
 
 ## References
 
