@@ -16,8 +16,6 @@ clear all; close all; %clc
 
 fileLoc2 = 'sounds-modalSynth/';
 ext = '.wav';
-noRes = '-noRes'; % add ,noRes after the file name to play the song 
-                  % with synthesized sound without residuals
 
 [y0, fs] = audioread( strcat(fileLoc2,'s0-d2',ext) );
 [y1, fs] = audioread( strcat(fileLoc2,'s3-A3',ext) );

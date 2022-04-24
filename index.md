@@ -18,33 +18,27 @@ Modal synthesis is a technique to perform vibration analysis of a system by dete
 
 ### Handpan
 
-Handpan instrument is a group of metallic percussion instruments played with hands that are similar to Hang® (cre­at­ed by PANArt tuners Sabi­na Schär­er and Felix Rohn­er in 2000 in Switzer­land[^4]), consisting of two hemispherical shells of nitrided or stainless steel. Its extraordinary sound is often described as calming and peaceful, which can be used for stress-release[^5]. Originated from the Caribbean steelpan instrument, a handpan typically has 8-9 notes in a pentatonic scale. Figure 1 is a sample image of a free integral Hang® built by PANArt, where seven harmonically tuned notes are around a central deep tone, and each excites the Helmholtz resonance in the body of the instrument[^6] [^7]. Figure 2 is a sample tuning scale[^8]. It can be turned in a wide range of scales, some examples are illustrated in Figure 3[^9]. 
+Handpan instrument is a group of metallic percussion instruments played with hands that are similar to Hang® (cre­at­ed by PANArt tuners Sabi­na Schär­er and Felix Rohn­er in 2000 in Switzer­land[^4]), consisting of two hemispherical shells of nitrided or stainless steel. Its extraordinary sound is often described as calming and peaceful, which can be used for stress-release[^5]. Originated from the Caribbean steelpan instrument, a handpan typically has 8-9 notes in a pentatonic scale. Figure 2 is a sample image of a free integral Hang® built by PANArt, where seven harmonically tuned notes are around a central deep tone, and each excites the Helmholtz resonance in the body of the instrument[^6] [^7]. Figure 3 is a sample tuning scale[^8]. It can be turned in a wide range of scales, some examples are illustrated in Figure 4[^9]. 
 
 <p align="center">
-  <img height="300" src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Panart-freies-integrales-hang.jpg" alt="Figure 1. The side, top, and bottom view of a Hang®.">
-  <figcaption align = "center"><b>Figure 1. The side, top, and bottom view of a Hang®.</b></figcaption>
+  <img height="300" src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Panart-freies-integrales-hang.jpg" alt="Figure 2. The side, top, and bottom view of a Hang®.">
+  <figcaption align = "center"><b>Figure 2. The side, top, and bottom view of a Hang®.</b></figcaption>
 </p>
 <p>&nbsp;</p>
 <p align="center">
-  <img width="350" src="https://acoustics.org/pressroom/httpdocs/155th/wesselfig3.gif" alt="Figure 2. A sample tuning scale beginning with D3 note in the center."> 
-  <figcaption align = "center"><b>Figure 2. A sample tuning scale beginning with D3 note in the center.</b></figcaption>
+  <img width="350" src="https://acoustics.org/pressroom/httpdocs/155th/wesselfig3.gif" alt="Figure 3. A sample tuning scale beginning with D3 note in the center."> 
+  <figcaption align = "center"><b>Figure 3. A sample tuning scale beginning with D3 note in the center.</b></figcaption>
 </p>
 <p>&nbsp;</p>
 <p align="center">
-  <img width="550" src="./img/HangScales.png" alt="Figure 3. Sample tuning scales.">
-  <figcaption align = "center"><b>Figure 3. Sample tuning scales.</b></figcaption>
+  <img width="550" src="./img/HangScales.png" alt="Figure 4. Sample tuning scales.">
+  <figcaption align = "center"><b>Figure 4. Sample tuning scales.</b></figcaption>
 </p>
 
 
 
 
 
-
-Modal Synthesis
-A different approach, with a long history of use in physical modeling sound synthesis, is based on a frequency-domain, or modal description of vibration of objects of potentially complex geometry. Modal synthesis [1,148], as it is called, is appealing, in that the complex dynamic behaviour of a vibrating object may be decomposed into contributions from a set of modes (the spatial forms of which are eigenfunctions of the particular problem at hand, and are dependent on boundary conditions), each of which oscillates at a single complex frequency. (Generally, for realvalued problems, these complex frequencies will occur in complex conjugate pairs, and the ``mode" may be considered to be the pair of such eigenfunctions and frequencies.) Considering the particular significance of sinusoids in human audio perception, such a decomposition can lead to useful insights, especially in terms of sound synthesis. Modal synthesis forms the basis of the popular MOSAIC [148] and Modalys [72] sound synthesis software packages (among others [32]), and, along with CORDIS, was one of the first such comprehensive systems to make use of physical modeling principles. More recently, various researchers, primarily Rabenstein have developed a related method, called the functional transformation method (FTM) [222] which uses modal techniques to derive point-to-point transfer functions. Sound synthesis applications of FTM are under development. An interesting viewpoint on the relationship between time and frequency domain methods is given by Rocchesso [177].
-A physical model of a musical instrument, such as a vibrating string or membrane, may be described in terms of two sets of data: 1) the PDE description itself and associated boundary conditions, and 2) excitation information, including initial conditions and/or an excitation function and location, and readout location(s). The basic modal synthesis strategy is as outlined in Figure 1.7. The first set of information is used, in an initial step, to determine modal shapes and frequencies of vibration; this involves, essentially, the solution of an eigenvalue problem, and may be performed in a variety of ways. (In the functional transformation approach, this is referred to as the solution of a Sturm-Liouville problem). Generally, this information must be stored, the modal shapes themselves in a so-called shape-matrix. Then, the second set of information is employed: the initial conditions and/or excitation are expanded onto the set of modal functions (which usually form an orthogonal set) through an inner product, giving a set of weighting coefficients. The weighted combination of modal functions then evolves, each at its own natural frequency. In order to obtain a sound output at a given time, the modal functions are projected (again through inner products) onto an observation state, which, in the simplest case, is of the form of a delta function at a given location on the object.
-
-Though modal synthesis had been called a ``frequency domain" method here, this is not quite a correct description of the workings of a modal synthesis algorithm, and is worth clarifying. In particular, temporal Fourier transforms are not employed, and the output waveform is generated directly in the time domain. Essentially, the behaviour of each mode is described by a scalar second-order ordinary differential equation, and various time-integration techniques (some of which will be described in Chapter 3) may be employed to obtain a numerical solution. In short, it is perhaps better to think of modal synthesis not as a frequency domain method, but rather a numerical method for a linear problem which has been diagonalized (to borrow a term from state space analysis [64]). As such, in contrast with a direct time domain approach, the state itself is not observable directly, except through reversal of the diagonalization process (i.e., the projection operation mentioned above). This lack of direct observability has a number of implications in terms of multiple channel output, time-variation of excitation and readout locations, and, most importantly, memory usage. Modal synthesis continues to develop, with newer research directions focussing on the problem of interaction with nonlinear point excitation mechanisms.
 
 
 
