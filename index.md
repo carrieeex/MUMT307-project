@@ -1,5 +1,11 @@
 ```markdown
-Sound synthesis is to generate a signal with desired acoustical effects and can be useful in sound design. Some common techniques include additive synthesis, granular synthesis, and physical modelling. This project aims to synthesize the handpan sound using modal synthesis. The model was devised by extracting the frequency peaks and bandwidths of the sound source. Thirteen recorded samples of the impulse response of each note were analyzed and recreated with resonance filters designed in MATLAB, and a song was played with realistic synthesized sound for demonstration.
+Sound synthesis is to generate a signal with desired acoustical effects and can be 
+useful in sound design. Some common techniques include additive synthesis, granular 
+synthesis, and physical modelling. This project aims to synthesize the handpan sound 
+using modal synthesis. The model was devised by extracting the frequency peaks and 
+bandwidths of the sound source. Thirteen recorded samples of the impulse response 
+of each note were analyzed and recreated with resonance filters designed in MATLAB, 
+and a song was played with realistic synthesized sound for demonstration.
 ```
 
 ## Introduction
