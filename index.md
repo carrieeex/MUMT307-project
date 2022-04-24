@@ -93,13 +93,14 @@ Therefore, we need to extract each peak's frequency and amplitude and find their
 The frequency resolution of an N-point DFT (Discrete Fourier Transform) is fs/N Hz, where fs is the sampling frequency. Since the peak value is not necessary at the bin value, a parabola was fitted to the spectral data to estimate the peak and amplitude values based on the three samples nearest the peak, as illustrated in Figure 7 [[14](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
 
 <p align="center">
-  <img height="550" src="./img/parabolicPeak.png" alt="Figure 7. Parabolic Interpolation.">
+  <img height="450" src="./img/parabolicPeak.png" alt="Figure 7. Parabolic Interpolation.">
   <figcaption align = "center"><b>Figure 7. Illustration of parabolic interpolation using the three most significant values around a peak.</b></figcaption>
 </p>
 
 A parabola can be written as y(x) = a(x-p)^2 + b, in which p is the peak location in bins, b is the peak amplitude in dB, and a is the curvature. The peak location can be extracted from the three nearest samples y(-1) = alpha, y(0) = beta, and y(1) = gamma as:
 p = (0.5) * (alpha - gamma) / (alpha - 2 * beta + gamma) = [-1/2, 1/2]. 
-Therefore, the estimated peak value y(p) is ![$y(p) = \beta - 0.25 * (\alpha - \gamma) * p$](http://www.sciweavers.org/tex2img.php?eq=y%28p%29%20%3D%20%5Cbeta%20-%20%5Cfrac%7B1%7D%7B4%7D%28%5Calpha%20-%20%5Cgamma%29p&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) [[14](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
+Therefore, the estimated peak value y(p) is:
+y(p) = beta - 0.25 * (alpha - gamma) * p [[14](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
 
 <!--
 A parabola can be written as ![y(x) = a(x-p)^2 + b](http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), in which p is the peak location in bins, b is the peak amplitude in dB, and a is the curvature. The peak location can be extracted from the three nearest samples y(-1) = ![\alpha](http://www.sciweavers.org/tex2img.php?eq=%5Calpha&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), y(0) = ![\beta](http://www.sciweavers.org/tex2img.php?eq=%5Cbeta&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) and y(1) = ![\gamma](http://www.sciweavers.org/tex2img.php?eq=%5Cgamma&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) as ![$p = (0.5) *(\alpha-\gamma) / (\alpha-2*\beta+\gamma) \in [-1/2,1/2]$](http://www.sciweavers.org/tex2img.php?eq=p%3D%5Cfrac%7B1%7D%7B2%7D%5Cfrac%7B%5Calpha-%5Cgamma%7D%7B%5Calpha-2%5Cbeta%2B%5Cgamma%7D%20%5Cin%20%5B-1%2F2%2C1%2F2%5D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=). Therefore, the estimated peak value y(p) is ![$y(p) = \beta - 0.25 * (\alpha - \gamma) * p$](http://www.sciweavers.org/tex2img.php?eq=y%28p%29%20%3D%20%5Cbeta%20-%20%5Cfrac%7B1%7D%7B4%7D%28%5Calpha%20-%20%5Cgamma%29p&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) [[14](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
@@ -242,6 +243,190 @@ The synthesized Note G3 excited by residual:
   <img height="550" src="./img/soundG3plot.png" alt="Figure 8. Time and frequency spectra of note G3.">
   <figcaption align = "center"><b>Figure 8. Time and frequency spectra of note G3. The orginal sound file, the impulse response of the resonance filters, and the synthesized sound driven by the residual were demostrated.</b></figcaption>
 </p>
+
+The recorded sample of Note D2: 
+<audio controls="controls" src="./sounds-original/s0-d2.mp3">
+<p>Note D2 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note D2 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
+<p>Note D2 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note D2 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
+<p>Note D2 - recreated.</p>
+</audio>
+
+The recorded sample of Note G3: 
+<audio controls="controls" src="./sounds-original/s1-G3.mp3">
+<p>Note G3 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note G3 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
+<p>Note G3 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note G3 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
+<p>Note G3 - recreated.</p>
+</audio>
+
+The recorded sample of Note D2: 
+<audio controls="controls" src="./sounds-original/s0-d2.mp3">
+<p>Note D2 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note D2 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
+<p>Note D2 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note D2 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
+<p>Note D2 - recreated.</p>
+</audio>
+
+The recorded sample of Note G3: 
+<audio controls="controls" src="./sounds-original/s1-G3.mp3">
+<p>Note G3 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note G3 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
+<p>Note G3 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note G3 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
+<p>Note G3 - recreated.</p>
+</audio>
+
+The recorded sample of Note D2: 
+<audio controls="controls" src="./sounds-original/s0-d2.mp3">
+<p>Note D2 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note D2 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
+<p>Note D2 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note D2 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
+<p>Note D2 - recreated.</p>
+</audio>
+
+The recorded sample of Note G3: 
+<audio controls="controls" src="./sounds-original/s1-G3.mp3">
+<p>Note G3 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note G3 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
+<p>Note G3 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note G3 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
+<p>Note G3 - recreated.</p>
+</audio>
+
+The recorded sample of Note D2: 
+<audio controls="controls" src="./sounds-original/s0-d2.mp3">
+<p>Note D2 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note D2 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
+<p>Note D2 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note D2 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
+<p>Note D2 - recreated.</p>
+</audio>
+
+The recorded sample of Note G3: 
+<audio controls="controls" src="./sounds-original/s1-G3.mp3">
+<p>Note G3 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note G3 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
+<p>Note G3 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note G3 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
+<p>Note G3 - recreated.</p>
+</audio>
+
+The recorded sample of Note D2: 
+<audio controls="controls" src="./sounds-original/s0-d2.mp3">
+<p>Note D2 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note D2 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
+<p>Note D2 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note D2 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
+<p>Note D2 - recreated.</p>
+</audio>
+
+The recorded sample of Note G3: 
+<audio controls="controls" src="./sounds-original/s1-G3.mp3">
+<p>Note G3 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note G3 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
+<p>Note G3 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note G3 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
+<p>Note G3 - recreated.</p>
+</audio>
+
+The recorded sample of Note D2: 
+<audio controls="controls" src="./sounds-original/s0-d2.mp3">
+<p>Note D2 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note D2 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
+<p>Note D2 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note D2 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
+<p>Note D2 - recreated.</p>
+</audio>
+
+The recorded sample of Note G3: 
+<audio controls="controls" src="./sounds-original/s1-G3.mp3">
+<p>Note G3 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note G3 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
+<p>Note G3 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note G3 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
+<p>Note G3 - recreated.</p>
+</audio>
+
+
+
+
 
 <!---
 [recorded sample](./sounds-original/s0-d2.mp3)
