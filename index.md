@@ -63,18 +63,35 @@ The playing technique of a handpan is to strike it with the hand, either using f
 
 Since each note is impulsively excited, the handpan can be modelled with a bank of resonance filters, and each is centred at particular frequency components. To obtain the parameters (gains and decay times) for these filters, one can tap each note area slightly with one hand or a rubber mallet and record the impulse response. A set of recorded samples are stored on the Github repo [[12](https://github.com/bel0v/handpan)]. Performing FFT (Fast Fourier Transform) on each sample and finding peaks of the spectra gives information on the central frequency and amplitude of each vibration mode. We can then estimate the peak bandwidth at a level of -3 dB to find the pole radius, which relates to the quality factor Q and the decay constant a. The feedback coefficients of a second-order IIR (infinite impulse response) filter can also be calculated to generate an impulse response. Finally, we can excite the impulse response with a residual obtained from the original signal. The detailed procedure with equations is listed below, and the MATLAB script is attached in Appendix A.
 
+### Resonance Filter Bank
+
+In order to simulate a decaying waveform, a digital resonator centred at frequency f can be designed to create an impulse response. This was achieved using a second-order IIR filter with feedback coefficients of a1 and a2, with the following specifications [[4](https://www.music.mcgill.ca/~gary/307/week10/node4.html)]:
+
+- difference equation of a second-order filter: ![y[n] = b0*x[n] + b1*x[n - 1] + b2*x[n - 2] - a1*y[n - 1] - a2*y[n - 2], n = 0, 1, 2, ...,](http://www.sciweavers.org/tex2img.php?eq=y%5Bn%5D%20%3D%20b_%7B0%7D%20x%5Bn%5D%20%2B%20b_%7B1%7D%20x%5Bn%20-%201%5D%20%2B%20b_%7B2%7D%20x%5Bn%20-%202%5D%20-%20a_%7B1%7D%20y%5Bn%20-%201%5D%20-%20a_%7B2%7D%20y%5Bn%20-%202%5D%2C%20n%20%3D%200%2C%201%2C%202%2C%20...%2C%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+- b0 = peak amplitude,
+- ![a1 = -2*r*cos(2*pi*f*Ts)](http://www.sciweavers.org/tex2img.php?eq=a_1%20%3D%20-2%20r%20%5Ccos%28%202%20%5Cpi%20f%20T_s%20%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), r = pole radius, Ts = sample period = 1/fs
+- ![a2 = r^2](http://www.sciweavers.org/tex2img.php?eq=a_2%20%3D%20r%5E2%0A&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=),
+- ![r = e^(-pi*B*Ts)](http://www.sciweavers.org/tex2img.php?eq=r%20%3D%20e%5E%7B-%20%5Cpi%20B%20T_s%7D%0A&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), B = 3dB-bandwidth [[13](https://ccrma.stanford.edu/~jos/fp/Resonator_Bandwidth_Terms_Pole.html)].
+
+Therefore, we need to extract each peak's frequency and amplitude and find their 3-dB bandwidth.
+
+<!--
+- $a_1 = -2 r \cos( 2 \pi f T_s )$
+- $a_2 = r^2$
+- $ B = - \frac{\ln(R)}{\pi T} $
+- $ r = e^{- \pi B T_s}$
+-->
+
 ### Parabolic Interpolation of Spectral Peaks
 
-The frequency resolution of an N-point DFT is fs/N Hz where fs is the sampling frequency. Since the peak value is not necessary at the bin value, a parabola was fitted to the spectral data to estimate the peak and amplitude values based on the three samples nearest the peak, as illustrated in Figure 7 [[13](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
+The frequency resolution of an N-point DFT (Discrete Fourier Transform) is fs/N Hz, where fs is the sampling frequency. Since the peak value is not necessary at the bin value, a parabola was fitted to the spectral data to estimate the peak and amplitude values based on the three samples nearest the peak, as illustrated in Figure 7 [[14](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
 
 <p align="center">
   <img height="550" src="./img/parabolicPeak.png" alt="Figure 7. Parabolic Interpolation.">
   <figcaption align = "center"><b>Figure 7. Illustration of parabolic interpolation using the three most significant values around a peak.</b></figcaption>
 </p>
 
-A parabola can be written as ![y(x) = a(x-p)^2 + b](http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), in which p is the peak location in bins, b is the peak amplitude in dB, and a is the curvature. The three nearest samples 
-
-![y(x) = a(x-p)^2 + b](http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+A parabola can be written as ![y(x) = a(x-p)^2 + b](http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), in which p is the peak location in bins, b is the peak amplitude in dB, and a is the curvature. The peak location can be extracted from the three nearest samples y(-1) = ![\alpha](http://www.sciweavers.org/tex2img.php?eq=%5Calpha&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), y(0) = ![\beta](http://www.sciweavers.org/tex2img.php?eq=%5Cbeta&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) and y(1) = ![\gamma](http://www.sciweavers.org/tex2img.php?eq=%5Cgamma&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) as ![$p = (0.5) *(\alpha-\gamma) / (\alpha-2*\beta+\gamma) \in [-1/2,1/2]$](http://www.sciweavers.org/tex2img.php?eq=p%3D%5Cfrac%7B1%7D%7B2%7D%5Cfrac%7B%5Calpha-%5Cgamma%7D%7B%5Calpha-2%5Cbeta%2B%5Cgamma%7D%20%5Cin%20%5B-1%2F2%2C1%2F2%5D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=). Therefore, the estimated peak value y(p) is ![$y(p) = \beta - 0.25 * (\alpha - \gamma) * p$](http://www.sciweavers.org/tex2img.php?eq=y%28p%29%20%3D%20%5Cbeta%20-%20%5Cfrac%7B1%7D%7B4%7D%28%5Calpha%20-%20%5Cgamma%29p&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=) [[14](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
 
 <!--
 <img src="http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=" alt="test" style="height: 100px; width:100px;"/>
@@ -85,51 +102,10 @@ A parabola can be written as ![y(x) = a(x-p)^2 + b](http://www.sciweavers.org/te
 </p>
 -->
 
-the general formula for a parabola may be written as
-
-$\displaystyle y(x) \mathrel{\stackrel{\Delta}{=}}a(x-p)^2+b$	(6.29)
-
-The center point $ p$ gives us our interpolated peak location (in bins), while the amplitude $ b$ equals the peak amplitude (typically in dB). The curvature $ 2a$ depends on the window used and contains no information about the sinusoid. (It may, however, indicate that the peak being interpolated is not a pure sinusoid.)
-At the three samples nearest the peak, we have
-
-\begin{eqnarray*}
-y(-1) &=& \alpha \\
-y(0) &=& \beta \\
-y(1) &=& \gamma
-\end{eqnarray*}
-where we arbitrarily renumbered the bins about the peak $ -1$ , 0, and 1. Writing the three samples in terms of the interpolating parabola gives
-
-\begin{eqnarray*}
-\alpha &=& ap^2 + 2ap + a + b \\
-\beta &=& ap^2 + b \\
-\gamma &=& ap^2 - 2ap + a + b
-\end{eqnarray*}
-which implies
-
-\begin{eqnarray*}
-\alpha- \gamma &=& 4ap \\
-\Rightarrow\quad p &=& \frac{\alpha-\gamma}{4a} \\
-\Rightarrow\quad \alpha &=& ap^2 + \left(\frac{\alpha-\gamma}{2}\right)
-+a+(\beta-ap^2) \\
-\Rightarrow\quad a &=& \frac{1}{2}(\alpha - 2\beta + \gamma) \\
-\end{eqnarray*}
-Hence, the interpolated peak location is given in bins6.9 (spectral samples) by
-
-$\displaystyle \zbox {p=\frac{1}{2}\frac{\alpha-\gamma}{\alpha-2\beta+\gamma}} \in [-1/2,1/2].$	(6.30)
-
-If $ k^\ast$ denotes the bin number of the largest spectral sample at the peak, then $ k^\ast+p$ is the interpolated peak location in bins. The final interpolated frequency estimate is then $ (k^\ast+p)f_s/N$ Hz, where $ f_s$ denotes the sampling rate and $ N$ is the FFT size.
-Using the interpolated peak location, the peak magnitude estimate is
-
-$\displaystyle \zbox {y(p) = \beta - \frac{1}{4}(\alpha-\gamma)p.}$
---
-A common method for interpolating spectral magnitude peaks is to use quadratic interpolation, which involves fitting a parabola to the three most significant values around a peak.
-Given the three spectral magnitude values around a peak as $y(-1) = \alpha, y(0) = \beta, y(1) = \gamma$, the interpolated peak location (in bins) is given by
-  $\displaystyle p = \frac{1}{2}\frac{\alpha - \gamma}{\alpha - 2\beta + \gamma}
-$(16)in the range -1/2 to +1/2.
-The magnitude at the peak is given as $y(p) = \beta - \frac{1}{4}(\alpha - \gamma)p$.
-
-
 ```matlab
+%% find peaks of the spectrum using parabolic interpolation
+% ref: https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html
+
 Y = abs(Y(1:ceil(N/2))); % keep half of fft
 Xi = [];
 threshold = 10^(40/20);  % dB converted to linear value
@@ -158,25 +134,108 @@ for n = 1:length(Xi)
 end
 ```
 
-### 3-dB Bandwidth Estimation
+### 3dB-Bandwidth Estimation
+
+After finding the frequency peaks, their 3dB-bandwidth can be calculated directly from the `powerbw()` function [[15](https://www.mathworks.com/help/signal/ref/powerbw.html)]. The periodogram power spectral density (PSD) was first estimated through the `periodogram()` function, and their 3dB-bandwidth was obtained in each peak by specifying the frequency range [[16](https://www.mathworks.com/help/signal/ref/periodogram.html)].
+
+```matlab
+%% find -3dB Bandwidth
+
+[Pxx,f2] = periodogram(y(sigIdx),rectwin(N),[],fs);
+for i = 1:length(Xi)
+    figure(1)
+    xline(Xi(i))
+    fl = Xi(i)-10;
+    fr = Xi(i)+10;
+    bw(i) = powerbw(Pxx(f2>fl & f2 < fr), f2(f2>fl & f2 < fr));
+end
+bw;
+factor = 0.6;
+B = factor*bw;
+```
+
+### Apply the Filters
+
+Given all the parameters being estimated above, the impulse response of each filter can then be applied with the residual of the original signal to simulate a realistic sound.
+
+```matlab
+%% IIR filter parameters
+
+r = exp(-pi*B/fs);
+b0 = Yi;
+a1 = -2*r.*cos(2*pi*Xi/fs);
+a2 = r.^2;
+
+%% Create impulse response of filter bank
+
+N = length(y);
+x = [1; zeros(N-1, 1)];
+y2 = filter( b0(1), [1 a1(1) a2(1)], x );
+for n = 2:K
+  y2 = y2 + filter( b0(n), [1 a1(n) a2(n)], x );
+end
+
+y1 =  y2 / max(abs(y2));
+
+useResidual = true;
+if useResidual
+  Y = fft(y);
+  Y2 = fft(y2);
+  R = Y ./Y2;
+  r = 50*real(ifft(R)); 
+
+  y2 = filter( b0(1), [1 a1(1) a2(1)], r );
+  for n = 2:K
+    y2 = y2 + filter( b0(n), [1 a1(n) a2(n)], r );
+  end
+end
+
+y2 =  y2 / max(abs(y2));
+```
 
 ## Results
 
-[recorded sample](./sounds-original/s0-d2.mp3)
+A total of 13 recorded samples were obtained and simulated via modal synthesis with resonance filters, as listed below (click the play button). In addition, the time and frequency domain of each signal was plotted, and an example of note G3 is illustrated in Figure 8.
 
+The recorded sample of Note D2: 
 <audio controls="controls" src="./sounds-original/s0-d2.mp3">
-<p>xxx.</p>
+<p>Note D2 - original.</p>
 </audio>
+
+The impulse response of resonance filters of Note D2 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
+<p>Note D2 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note D2 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
+<p>Note D2 - recreated.</p>
+</audio>
+
+The recorded sample of Note G3: 
+<audio controls="controls" src="./sounds-original/s1-G3.mp3">
+<p>Note G3 - original.</p>
+</audio>
+
+The impulse response of resonance filters of Note G3 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
+<p>Note G3 - filter's impulse response.</p>
+</audio>
+
+The synthesized Note G3 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
+<p>Note G3 - recreated.</p>
+</audio>
+
+<p align="center">
+  <img height="550" src="./img/soundG3plot.png" alt="Figure 8. Time and frequency spectra of note G3.">
+  <figcaption align = "center"><b>Figure 8. Time and frequency spectra of note G3. The orginal sound file, the impulse response of the resonance filters, and the synthesized sound driven by the residual were demostrated.</b></figcaption>
+</p>
 
 <!---
+[recorded sample](./sounds-original/s0-d2.mp3)
 https://talk.commonmark.org/t/embedded-audio-file-from-github-repo/3558
 -->
-
-<audio controls="controls">
-<source src="https://github.com/carrieeex/MUMT307-project/blob/68b3b8d8ccdbe076c0b63dc4913d0a17ab328454/sounds-original/s0-d2.mp3"/>
-<p>xxxx.</p>
-</audio>
-
 
 ## Discussion
 
@@ -212,7 +271,16 @@ https://talk.commonmark.org/t/embedded-audio-file-from-github-repo/3558
 
 [12]: Yegor. Bel0v/Handpan. JavaScript, 2016. Accessed 22 April 2022. https://github.com/bel0v/handpan.
 
-[13]: Smith, J.O. "Quadratic Interpolation of Spectral Peaks", in _Spectral Audio Signal Processing_, https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html, online book, 2011 edition, accessed 22 April 2022.
+[13]: Smith, J.O. "Resonator Bandwidth in Terms of Pole Radius", in _Introduction to Digital Filters with Audio Applications_, https://ccrma.stanford.edu/~jos/fp/Resonator_Bandwidth_Terms_Pole.html, online book, 2007 edition, accessed 22 April 2022.
+
+[14]: Smith, J.O. "Quadratic Interpolation of Spectral Peaks", in _Spectral Audio Signal Processing_, https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html, online book, 2011 edition, accessed 22 April 2022.
+
+[15]: "Power Bandwidth - MATLAB Powerbw." Accessed April 22, 2022. https://www.mathworks.com/help/signal/ref/powerbw.html.
+
+[16]: "Periodogram Power Spectral Density Estimate - MATLAB Periodogram." Accessed April 22, 2022. https://www.mathworks.com/help/signal/ref/periodogram.html.
+
+
+
 
 ***
 
