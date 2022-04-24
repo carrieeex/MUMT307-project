@@ -4,87 +4,111 @@ Sound synthesis is to generate a signal with desired acoustical effects and can 
 
 ## Introduction
 
-Physical model synthesis is a technique to simulate the vibrations of objects under various excitations. It requreis a description the vibrational characteristics and the coupling interactions of the physical structures.  Modal synthesis can be seen as a special physical modelling technique in which the vibrations of resonant structures are simulated on the basis of a modal representation and the interactions between structures are calculated by the time step of the corresponding equations [^1].
+Physical model synthesis is a technique to simulate the vibrations of objects under various excitations. It requreis a description the vibrational characteristics and the coupling interactions of the physical structures.  Modal synthesis can be seen as a special physical modelling technique in which the vibrations of resonant structures are simulated on the basis of a modal representation and the interactions between structures are calculated by the time step of the corresponding equations [1].
 
 ### Modal Synthesis
 
-Modal synthesis is a technique to perform vibration analysis of a system by determining its mode shapes and frequencies. For example, a signal shown in Figure 1 can be seen as a superposition of various modes; each has a particular frequency [^2]. It can be re-assembled by combining such frequencies and selected modal information. Modal synthesis is "both effective and efficient for recreating the sounds of objects that exhibit a relatively small number of strong decaying modes" [^3]. Some good candidates for such technique are plucked strings, a marimba struck by a mallet, or a bar hit by a hammer. It uses filter banks (i.e. a lot of filters) to simulate all the resonant modes of the system. Resonant filters can approximate the spectral and temporal profile of the sound: the radius of the filter, which is related to its bandwidth, gives insights into the decay time.
+Modal synthesis is a technique to perform vibration analysis of a system by determining its mode shapes and frequencies. For example, a signal shown in Figure 1 can be seen as a superposition of various modes; each has a particular frequency [2]. It can be re-assembled by combining such frequencies and selected modal information. Modal synthesis is "both effective and efficient for recreating the sounds of objects that exhibit a relatively small number of strong decaying modes" [3]. Some good candidates for such technique are plucked strings, a marimba struck by a mallet, or a bar hit by a hammer. It can also use filter banks (i.e. a lot of filters) to simulate all the resonant modes of the system as illustrated in Figure 2 [4]. Resonance filters can approximate the spectral and temporal profile of the sound: the radius of the filter, which is related to its bandwidth, gives insights into the decay time.
 
 <p align="center">
   <img height="300" src="./img/ModalSynth.png" alt="Figure 1. Modal Synthesis of a linear, distributed time-dependent signal.">
-  <figcaption align = "center"><b>Figure 1. Modal Synthesis of a linear, distributed time-dependent signal.</b></figcaption>
+  <figcaption align = "center"><b>Figure 1. Modal synthesis of a linear, distributed time-dependent signal as decomposition and recombination of individul modes with different frequencies.</b></figcaption>
+</p>
+
+<p align="center">
+  <img height="300" src="./img/ModalSynth2.png" alt="Figure 2. Modal Synthesis Resonance Filters model.">
+  <figcaption align = "center"><b>Figure 2. A block diagram of modal synthesis model using resonance filters.</b></figcaption>
 </p>
 
 
 ### Handpan
 
-Handpan instrument is a group of metallic percussion instruments played with hands that are similar to Hang® (cre­at­ed by PANArt tuners Sabi­na Schär­er and Felix Rohn­er in 2000 in Switzer­land[^4]), consisting of two hemispherical shells of nitrided or stainless steel. Its extraordinary sound is often described as calming and peaceful, which can be used for stress-release[^5]. Originated from the Caribbean steelpan instrument, a handpan typically has 8-9 notes in a pentatonic scale. Figure 2 is a sample image of a free integral Hang® built by PANArt, where seven harmonically tuned notes are around a central deep tone, and each excites the Helmholtz resonance in the body of the instrument[^6] [^7]. Figure 3 is a sample tuning scale[^8]. It can be turned in a wide range of scales, some examples are illustrated in Figure 4[^9]. 
+Handpan instrument is a group of metallic percussion instruments played with hands that are similar to Hang® (cre­at­ed by PANArt tuners Sabi­na Schär­er and Felix Rohn­er in 2000 in Switzer­land [5]), consisting of two hemispherical shells of nitrided or stainless steel. Its extraordinary sound is often described as calming and peaceful, which can be used for stress-release [6]. Originated from the Caribbean steelpan instrument, a handpan typically has 8-9 notes in a pentatonic scale. Figure 3 is a sample image of a free integral Hang® built by PANArt, where seven harmonically tuned notes are around a central deep tone, and each excites the Helmholtz resonance in the body of the instrument [7] [8]. Figure 4 is a sample tuning scale commonly known as Kurd D, adapted from [9]. It can be turned in a wide range of scales, some examples are illustrated in Figure 5 [10]. 
 
 <p align="center">
-  <img height="300" src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Panart-freies-integrales-hang.jpg" alt="Figure 2. The side, top, and bottom view of a Hang®.">
-  <figcaption align = "center"><b>Figure 2. The side, top, and bottom view of a Hang®.</b></figcaption>
+  <img height="300" src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Panart-freies-integrales-hang.jpg" alt="Figure 3. The side, top, and bottom view of a Hang®.">
+  <figcaption align = "center"><b>Figure 3. The side, top, and bottom view of a Hang®.</b></figcaption>
 </p>
 <p>&nbsp;</p>
 <p align="center">
-  <img width="350" src="https://acoustics.org/pressroom/httpdocs/155th/wesselfig3.gif" alt="Figure 3. A sample tuning scale beginning with D3 note in the center."> 
-  <figcaption align = "center"><b>Figure 3. A sample tuning scale beginning with D3 note in the center.</b></figcaption>
+  <img width="350" src="./img/HandpanKurdD.jpg" alt="Figure 4. A sample tuning scale beginning with D3 note in the center."> 
+  <figcaption align = "center"><b>Figure 4. A sample tuning scale beginning with D3 note in the center. Eight note areas are arranged around the center note area of the handpan.</b></figcaption>
 </p>
 <p>&nbsp;</p>
 <p align="center">
-  <img width="550" src="./img/HangScales.png" alt="Figure 4. Sample tuning scales.">
-  <figcaption align = "center"><b>Figure 4. Sample tuning scales.</b></figcaption>
+  <img width="550" src="./img/HangScales.png" alt="Figure 5. Sample tuning scales.">
+  <figcaption align = "center"><b>Figure 5. Sample tuning scales.</b></figcaption>
 </p>
 
+The playing technique of a handpan is to struck it with the hand, either using finger tips or the palm.
 
 
 
+When struck with the hand, each note area of the hang vibrates in a rich complement of modes. In particular, the three lowest-frequency modes—the fundamental and the second and third harmonics—are all strongly excited. The frequencies of those modes are in the ratio of 1:2:3, and that harmonic relation leads to an interesting effect: Striking one note can cause another note to vibrate. The waves created when the hang is struck are not confined to a single note area. Rather, they initially propagate outward through the steel of the instrument and are eventually reflected many times off the hang’s boundaries. If any other notes have resonances at frequencies near those in the spectrum of the struck note, as is often the case, then modes of the other notes will be excited and the hang will vibrate at the corresponding frequencies. [10]
 
+Playing techniques
+
+The manner in which the HANG is played has considerable influence on the quality of the sounds that it produces. Playing more or less intensely influences the spectral content, the decay time, and additional features of the amplitude envelope.
+
+When playingfff not only is the overall amplitude dramatically changed but the loud note rings longer than the soft one. The soft note has but two audibly significant components in an octave relationship whereas the intense notes higher frequency components are inharmonic with respect to the fundamental. In addition, the intense note shows significant amplitude modulations due to beating.
+
+An important set of playing techniques involves playing a HANG note with a rapid succession of impacts. This can be accomplished in a variety of ways, the most elementary of which involves playing single stroke roles with the fingers of alternating hands. As each stroke arrives it finds the HANG in a different state. As a result, each of the notes in the roll has a slightly different timbre. This timbral variation provides a quality to the sound that cannot be achieved by repeating the same sample of a HANG to simulate a roll. To demonstrate this effect we modeled the HANG with filters centered at each of the frequency components. The gains and decay times for these resonate filters were estimated from the analysis. We demonstrate the difference in sound quality by comparing the free running set of resonate filters with a version of the model where the state of the filters remains constant at each impulse.
+
+Another effective way to play a rapid succession of single notes is to use a technique analogous to the way a percussionist using sticks plays a flam. This can be accomplished by placing the middle finger just ahead of the index finger when striking the HANG. The arrival times of the two fingers can be controlled by how far they are spaced apart prior to the impact. A variety of timbres can be obtained by controlling the finger spacing in this manner. More complex effects, such as a flurry of notes, can be obtained by arranging the fingers so that the baby finger strikes first followed by the ring, middle, and index fingers in rapid succession.
+
+The HANG's center note with its outwardly extending boss invites a variety of techniques including striking it with a larger surface of hand as with flattened fingers or the base of the palm.
+
+One of the most important aspects of HANG technique is how long the finger or hand remains in contact with the instrument during the stroke. The longer the contact time the greater the damping effect. Many beginning players have difficulty striking the instrument and pulling away quickly making it hard for them to produce notes that ring. One tip is to actually practice making the up stroke rapid separately from the down stoke and then combining them to effectively control the contact time with the instrument.
+
+The HANG can be modeled with filters centered at each of the frequency components; the gains and decay times for these resonant filters can be estimated from the analysis of multiple playing strokes. From the analysis it is possible to synthesize realistic sounds of the HANG. This is the known synthesis of this interesting and popular instrument. [8]
 
 
 
 ## References
 
-[^1]: Morrison, Joseph Derek, and Jean-Marie Adrien. "MOSAIC: A Framework for Modal Synthesis." Computer Music Journal 17, no. 1 (1993): 45–56. https://doi.org/10.2307/3680569.
+[1]: Morrison, Joseph Derek, and Jean-Marie Adrien. "MOSAIC: A Framework for Modal Synthesis." Computer Music Journal 17, no. 1 (1993): 45–56. https://doi.org/10.2307/3680569.
 
-[^2]: Bilbao, Stefan. "Modal Synthesis", in Numerical Sound Synthesis, https://ccrma.stanford.edu/~bilbao/booktop/node14.html, online book, 2006 edition, accessed 22 April 2022.
+[2]: Bilbao, Stefan. "Modal Synthesis", in Numerical Sound Synthesis, https://ccrma.stanford.edu/~bilbao/booktop/node14.html, online book, 2006 edition, accessed 22 April 2022.
 
-[^3]: Scavone, Gary P. "Modal Synthesis", in MUMT 307: Music Audio Computing II, https://www.music.mcgill.ca/~gary/307/week10/modal.html, online book, 2022 edition, accessed 22 April 2022.
+[3]: Scavone, Gary P. "Modal Synthesis", in MUMT 307: Music Audio Computing II, https://www.music.mcgill.ca/~gary/307/week10/modal.html, online book, 2022 edition, accessed 22 April 2022.
 
-[^4]: PANArt. "Copyright: Questions and Answers". Panart (en). Accessed 1 December 2021. https://panart.ch/en/articles/copyright-questions-and-answers.
+[4]: Scavone, Gary P. "Digital 'Resonators'", in MUMT 307: Music Audio Computing II, http://www.music.mcgill.ca/~gary/307/week10/node4.html, online book, 2022 edition, accessed 22 April 2022.
 
-[^5]: Malzer, Clara. "The Magic of The Handpan: The Instrument For Stress-Release And Harmony". The Conscious Club. Accessed 1 December 2021. https://theconsciousclub.com/articles/2019/10/24/the-magic-of-the-handpan-the-instrument-for-stress-release-and-harmonynbsp.
+[5]: PANArt. "Copyright: Questions and Answers". Panart (en). Accessed 1 December 2021. https://panart.ch/en/articles/copyright-questions-and-answers.
 
-[^6]: Rohner, Felix, and Sabina Schärer. "History, Development and Tuning of the Hang", 2007. http://www.hangblog.org/panart/Paper-Hang-2007.pdf.
+[6]: Malzer, Clara. "The Magic of The Handpan: The Instrument For Stress-Release And Harmony". The Conscious Club. Accessed 1 December 2021. https://theconsciousclub.com/articles/2019/10/24/the-magic-of-the-handpan-the-instrument-for-stress-release-and-harmonynbsp.
 
-[^7]: "File:Panart-Freies-Integrales-Hang.Jpg - Wikipedia". Accessed 1 December 2021. https://commons.wikimedia.org/wiki/File:Panart-freies-integrales-hang.jpg.
+[7]: Rohner, Felix, and Sabina Schärer. "History, Development and Tuning of the Hang", 2007. http://www.hangblog.org/panart/Paper-Hang-2007.pdf.
 
-[^8]: Wessel, David, Andrew Morrision, and Thomas D. Rossing. "SOUND OF THE HANG". ACOUSTICS.ORG, 4 July 2008. https://acoustics.org/pressroom/httpdocs/155th/wessel.htm.
+[8]: "File:Panart-Freies-Integrales-Hang.Jpg - Wikipedia". Accessed 1 December 2021. https://commons.wikimedia.org/wiki/File:Panart-freies-integrales-hang.jpg.
 
-[^9]: Rossing, Thomas D., Andrew Morrision, Uwe Hansen, Felix Rohner, and Sabina Schärer. "ACOUSTICS OF THE HANG: A Hand-Played Steel Instrument", 2007. http://www.hangblog.org/panart/2-S2-4-IsmaRossing.pdf.
+[9]: Wessel, David, Andrew Morrision, and Thomas D. Rossing. "SOUND OF THE HANG". ACOUSTICS.ORG, 4 July 2008. https://acoustics.org/pressroom/httpdocs/155th/wessel.htm.
 
-
-
-
+[10]: Rossing, Thomas D., Andrew Morrision, Uwe Hansen, Felix Rohner, and Sabina Schärer. "ACOUSTICS OF THE HANG: A Hand-Played Steel Instrument", 2007. http://www.hangblog.org/panart/2-S2-4-IsmaRossing.pdf.
 
 
 
 
 
-[^7]: "Ayasa - Acquire an Instrument". Accessed 1 December 2021. https://ayasainstruments.com/acquire-an-ayasa.
 
-[^8]: Paslier, Sylvain. "How Are Handpans Made? A Step-by-Step Guide". sylvainpasliermusic, 22 August 2019. https://www.sylvainpasliermusic.com/post/how-are-handpans-made.
 
-[^9]: Scavone, Gary P. "MIDI". Accessed 1 December 2021. https://www.music.mcgill.ca/~gary/306/week2/node3.html.
 
-[^10]: Morrison, Andrew, and Thomas D. Rossing. "The Extraordinary Sound of the Hang". Physics Today 62, no. 3 (March 2009): 66–67. https://doi.org/10.1063/1.3099586.
 
-[^11]: Scavone, Gary P. "Interfacing the Arduino to Max/MSP". Accessed 1 December 2021. https://www.music.mcgill.ca/~gary/306/week5/node7.html.
+[7]: "Ayasa - Acquire an Instrument". Accessed 1 December 2021. https://ayasainstruments.com/acquire-an-ayasa.
 
-[^12]: Gautschi, Gustav. "Introduction". In Piezoelectric Sensorics: Force Strain Pressure Acceleration and Acoustic Emission Sensors Materials and Amplifiers, edited by Gustav Gautschi, 1–3. Berlin, Heidelberg: Springer, 2002. https://doi.org/10.1007/978-3-662-04732-3_1.
+[8]: Paslier, Sylvain. "How Are Handpans Made? A Step-by-Step Guide". sylvainpasliermusic, 22 August 2019. https://www.sylvainpasliermusic.com/post/how-are-handpans-made.
 
-[^13]: "MakerHawk 4pcs Analog Ceramic Piezo Vibration Sensor Module 3.3V/5V for Arduino DIY Kit: Amazon.Com: Industrial & Scientific". Accessed 1 December 2021. https://www.amazon.com/MakerHawk-Analog-Ceramic-Vibration-Arduino/dp/B07KS5NV4V.
+[9]: Scavone, Gary P. "MIDI". Accessed 1 December 2021. https://www.music.mcgill.ca/~gary/306/week2/node3.html.
 
-[^14]: Arduino Online Shop. "Arduino Mega 2560 Rev3". Accessed 1 December 2021. http://store-usa.arduino.cc/products/arduino-mega-2560-rev3.
+[10]: Morrison, Andrew, and Thomas D. Rossing. "The Extraordinary Sound of the Hang". Physics Today 62, no. 3 (March 2009): 66–67. https://doi.org/10.1063/1.3099586.
+
+[11]: Scavone, Gary P. "Interfacing the Arduino to Max/MSP". Accessed 1 December 2021. https://www.music.mcgill.ca/~gary/306/week5/node7.html.
+
+[12]: Gautschi, Gustav. "Introduction". In Piezoelectric Sensorics: Force Strain Pressure Acceleration and Acoustic Emission Sensors Materials and Amplifiers, edited by Gustav Gautschi, 1–3. Berlin, Heidelberg: Springer, 2002. https://doi.org/10.1007/978-3-662-04732-3_1.
+
+[13]: "MakerHawk 4pcs Analog Ceramic Piezo Vibration Sensor Module 3.3V/5V for Arduino DIY Kit: Amazon.Com: Industrial & Scientific". Accessed 1 December 2021. https://www.amazon.com/MakerHawk-Analog-Ceramic-Vibration-Arduino/dp/B07KS5NV4V.
+
+[14]: Arduino Online Shop. "Arduino Mega 2560 Rev3". Accessed 1 December 2021. http://store-usa.arduino.cc/products/arduino-mega-2560-rev3.
 
 
 
