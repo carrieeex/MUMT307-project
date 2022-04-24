@@ -61,11 +61,30 @@ The playing technique of a handpan is to strike it with the hand, either using f
 
 ## Methods
 
-Since each note is impulsively excited, the handpan can be modelled with a bank of resonance filters, and each is centred at particular frequency components. To obtain the parameters (gains and decay times) for these filters, one can tap each note area slightly with one hand or a rubber mallet and record the impulse response. A set of recorded samples are stored on the Github repo [[12](https://github.com/bel0v/handpan)]. Performing FFT (Fast Fourier Transform) on each sample and finding peaks of the spectra gives information on the central frequency and amplitude of each vibration mode. We can then estimate the peak bandwidth at a level of -3 dB to find the pole radius, which relates to the quality factor Q and the decay constant a. The feedback coefficients of a second-order IIR (infinite impulse response) filter can also be calculated to generate an impulse response. Finally, we can excite the impulse response with a residual obtained from the original signal. The detailed procedure with equations is listed below, and the MATLAB script is attached in Appendix.
+Since each note is impulsively excited, the handpan can be modelled with a bank of resonance filters, and each is centred at particular frequency components. To obtain the parameters (gains and decay times) for these filters, one can tap each note area slightly with one hand or a rubber mallet and record the impulse response. A set of recorded samples are stored on the Github repo [[12](https://github.com/bel0v/handpan)]. Performing FFT (Fast Fourier Transform) on each sample and finding peaks of the spectra gives information on the central frequency and amplitude of each vibration mode. We can then estimate the peak bandwidth at a level of -3 dB to find the pole radius, which relates to the quality factor Q and the decay constant a. The feedback coefficients of a second-order IIR (infinite impulse response) filter can also be calculated to generate an impulse response. Finally, we can excite the impulse response with a residual obtained from the original signal. The detailed procedure with equations is listed below, and the MATLAB script is attached in Appendix A.
 
 ### Parabolic Interpolation of Spectral Peaks
 
+### 3-dB Bandwidth Estimation
 
+## Results
+
+[recorded sample](./sounds-original/s0-d2.mp3)
+
+<audio controls="controls" src="./sounds-original/s0-d2.mp3">
+<p>xxx.</p>
+</audio>
+
+
+<audio controls="controls">
+<source src="https://github.com/carrieeex/MUMT307-project/blob/68b3b8d8ccdbe076c0b63dc4913d0a17ab328454/sounds-original/s0-d2.mp3"/>
+<p>xxxx.</p>
+</audio>
+
+
+## Discussion
+
+## Conclusion
 
 ***
 
@@ -119,7 +138,9 @@ Since each note is impulsively excited, the handpan can be modelled with a bank 
 [144]: Arduino Online Shop. "Arduino Mega 2560 Rev3". Accessed 1 December 2021. http://store-usa.arduino.cc/products/arduino-mega-2560-rev3.
 
 
-## Appendix A. Sample MATLAB script of Modal Synthesis.
+## Appendix 
+
+### A. Sample MATLAB script of Modal Synthesis.
 
 ```Matlab
 % A Matlab script to demonstrate modal synthesis, based on course materials
@@ -325,3 +346,4 @@ audiowrite(s_new1, y1, fs)
 
 audiowrite(s_new, y2, fs)
 ```
+
