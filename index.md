@@ -209,20 +209,22 @@ y2 =  y2 / max(abs(y2));
 
 A total of 13 recorded samples were obtained and simulated via modal synthesis with resonance filters, as listed below (click the play button). In addition, the time and frequency domain of each signal was plotted, and an example of note G3 is illustrated in Figure 8.
 
-The recorded sample of Note D2: 
+The recorded sample of Note D3: 
 <audio controls="controls" src="./sounds-original/s0-d2.mp3">
-<p>Note D2 - original.</p>
+<p>Note D3 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note D2 (no residual): 
+The impulse response of resonance filters of Note D3 (no residual): 
 <audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
-<p>Note D2 - filter's impulse response.</p>
+<p>Note D3 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note D2 excited by residual: 
+The synthesized Note D3 excited by residual: 
 <audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
-<p>Note D2 - recreated.</p>
+<p>Note D3 - recreated.</p>
 </audio>
+
+***
 
 The recorded sample of Note G3: 
 <audio controls="controls" src="./sounds-original/s1-G3.mp3">
@@ -244,188 +246,192 @@ The synthesized Note G3 excited by residual:
   <figcaption align = "center"><b>Figure 8. Time and frequency spectra of note G3. The orginal sound file, the impulse response of the resonance filters, and the synthesized sound driven by the residual were demostrated.</b></figcaption>
 </p>
 
-The recorded sample of Note D2: 
-<audio controls="controls" src="./sounds-original/s0-d2.mp3">
-<p>Note D2 - original.</p>
+***
+
+The recorded sample of Note A3: 
+<audio controls="controls" src="./sounds-original/s3-A3.mp3">
+<p>Note A3 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note D2 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
-<p>Note D2 - filter's impulse response.</p>
+The impulse response of resonance filters of Note A3 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s3-A3-noRes.wav">
+<p>Note A3 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note D2 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
-<p>Note D2 - recreated.</p>
+The synthesized Note A3 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s3-A3.wav">
+<p>Note A3 - recreated.</p>
 </audio>
 
-The recorded sample of Note G3: 
-<audio controls="controls" src="./sounds-original/s1-G3.mp3">
-<p>Note G3 - original.</p>
+***
+
+The recorded sample of Note A#3: 
+<audio controls="controls" src="./sounds-original/s4-A#3.mp3">
+<p>Note A#3 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note G3 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
-<p>Note G3 - filter's impulse response.</p>
+The impulse response of resonance filters of Note A#3 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s4-A#3-noRes.wav">
+<p>Note A#3 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note G3 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
-<p>Note G3 - recreated.</p>
+The synthesized Note A#3 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s4-A#3.wav">
+<p>Note A#3 - recreated.</p>
 </audio>
 
-The recorded sample of Note D2: 
-<audio controls="controls" src="./sounds-original/s0-d2.mp3">
-<p>Note D2 - original.</p>
+***
+
+The recorded sample of Note B3: 
+<audio controls="controls" src="./sounds-original/s5-B3.mp3">
+<p>Note B3 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note D2 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
-<p>Note D2 - filter's impulse response.</p>
+The impulse response of resonance filters of Note B3 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s5-B3-noRes.wav">
+<p>Note B3 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note D2 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
-<p>Note D2 - recreated.</p>
+The synthesized Note B3 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s5-B3.wav">
+<p>Note B3 - recreated.</p>
 </audio>
 
-The recorded sample of Note G3: 
-<audio controls="controls" src="./sounds-original/s1-G3.mp3">
-<p>Note G3 - original.</p>
+***
+
+The recorded sample of Note C4: 
+<audio controls="controls" src="./sounds-original/s6-C4.mp3">
+<p>Note C4 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note G3 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
-<p>Note G3 - filter's impulse response.</p>
+The impulse response of resonance filters of Note C4 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s6-C4-noRes.wav">
+<p>Note C4 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note G3 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
-<p>Note G3 - recreated.</p>
+The synthesized Note C4 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s6-C4.wav">
+<p>Note C4 - recreated.</p>
 </audio>
 
-The recorded sample of Note D2: 
-<audio controls="controls" src="./sounds-original/s0-d2.mp3">
-<p>Note D2 - original.</p>
+***
+
+The recorded sample of Note D4: 
+<audio controls="controls" src="./sounds-original/s8-D4.mp3">
+<p>Note D4 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note D2 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
-<p>Note D2 - filter's impulse response.</p>
+The impulse response of resonance filters of Note D4 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s8-D4-noRes.wav">
+<p>Note D4 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note D2 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
-<p>Note D2 - recreated.</p>
+The synthesized Note D4 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s8-D4.wav">
+<p>Note D4 - recreated.</p>
 </audio>
 
-The recorded sample of Note G3: 
-<audio controls="controls" src="./sounds-original/s1-G3.mp3">
-<p>Note G3 - original.</p>
+***
+
+The recorded sample of Note E4: 
+<audio controls="controls" src="./sounds-original/s10-E4.mp3">
+<p>Note E4 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note G3 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
-<p>Note G3 - filter's impulse response.</p>
+The impulse response of resonance filters of Note E4 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s10-E4-noRes.wav">
+<p>Note E4 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note G3 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
-<p>Note G3 - recreated.</p>
+The synthesized Note E4 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s10-E4.wav">
+<p>Note E4 - recreated.</p>
 </audio>
 
-The recorded sample of Note D2: 
-<audio controls="controls" src="./sounds-original/s0-d2.mp3">
-<p>Note D2 - original.</p>
+***
+
+The recorded sample of Note F4: 
+<audio controls="controls" src="./sounds-original/s11-F4.mp3">
+<p>Note F4 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note D2 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
-<p>Note D2 - filter's impulse response.</p>
+The impulse response of resonance filters of Note F4 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s11-F4-noRes.wav">
+<p>Note F4 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note D2 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
-<p>Note D2 - recreated.</p>
+The synthesized Note F4 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s11-F4.wav">
+<p>Note F4 - recreated.</p>
 </audio>
 
-The recorded sample of Note G3: 
-<audio controls="controls" src="./sounds-original/s1-G3.mp3">
-<p>Note G3 - original.</p>
+***
+
+The recorded sample of Note F#4: 
+<audio controls="controls" src="./sounds-original/s12-F#4.mp3">
+<p>Note F#4 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note G3 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
-<p>Note G3 - filter's impulse response.</p>
+The impulse response of resonance filters of Note F#4 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s12-F#4-noRes.wav">
+<p>Note F#4 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note G3 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
-<p>Note G3 - recreated.</p>
+The synthesized Note F#4 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s12-F#4.wav">
+<p>Note F#4 - recreated.</p>
 </audio>
 
-The recorded sample of Note D2: 
-<audio controls="controls" src="./sounds-original/s0-d2.mp3">
-<p>Note D2 - original.</p>
+***
+
+The recorded sample of Note G4: 
+<audio controls="controls" src="./sounds-original/s13-G4.mp3">
+<p>Note G4 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note D2 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
-<p>Note D2 - filter's impulse response.</p>
+The impulse response of resonance filters of Note G4 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s13-G4-noRes.wav">
+<p>Note G4 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note D2 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
-<p>Note D2 - recreated.</p>
+The synthesized Note G4 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s13-G4.wav">
+<p>Note G4 - recreated.</p>
 </audio>
 
-The recorded sample of Note G3: 
-<audio controls="controls" src="./sounds-original/s1-G3.mp3">
-<p>Note G3 - original.</p>
+***
+
+The recorded sample of Note A4: 
+<audio controls="controls" src="./sounds-original/s15-A4.mp3">
+<p>Note A4 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note G3 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
-<p>Note G3 - filter's impulse response.</p>
+The impulse response of resonance filters of Note A4 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s15-A4-noRes.wav">
+<p>Note A4 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note G3 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
-<p>Note G3 - recreated.</p>
+The synthesized Note A4 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s15-A4.wav">
+<p>Note A4 - recreated.</p>
 </audio>
 
-The recorded sample of Note D2: 
-<audio controls="controls" src="./sounds-original/s0-d2.mp3">
-<p>Note D2 - original.</p>
+***
+
+The recorded sample of Note B4: 
+<audio controls="controls" src="./sounds-original/s16-B4.mp3">
+<p>Note B4 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note D2 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2-noRes.wav">
-<p>Note D2 - filter's impulse response.</p>
+The impulse response of resonance filters of Note B4 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s16-B4-noRes.wav">
+<p>Note B4 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note D2 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s0-d2.wav">
-<p>Note D2 - recreated.</p>
+The synthesized Note B4 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s16-B4.wav">
+<p>Note B4 - recreated.</p>
 </audio>
-
-The recorded sample of Note G3: 
-<audio controls="controls" src="./sounds-original/s1-G3.mp3">
-<p>Note G3 - original.</p>
-</audio>
-
-The impulse response of resonance filters of Note G3 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3-noRes.wav">
-<p>Note G3 - filter's impulse response.</p>
-</audio>
-
-The synthesized Note G3 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s1-G3.wav">
-<p>Note G3 - recreated.</p>
-</audio>
-
-
-
 
 
 <!---
