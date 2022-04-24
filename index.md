@@ -61,20 +61,20 @@ The playing technique of a handpan is to strike it with the hand, either using f
 
 ## Methods
 
-Since each note is impulsively excited, the handpan can be modelled with a bank of resonance filters, and each is centred at particular frequency components. To obtain the parameters (gains and decay times) for these filters, one can tap each note area slightly with one hand or a rubber mallet and record the impulse response. A set of recorded samples are stored on the Github repo [[12](https://github.com/bel0v/handpan)]. Performing FFT (Fast Fourier Transform) on each sample and finding peaks of the spectra gives information on the central frequency and amplitude of each vibration mode. We can then estimate the peak bandwidth at a level of -3 dB to find the pole radius, which relates to the quality factor $\displaystyle Q$ and the decay constant $\displaystyle \alpha$. The feedback coefficients of a second-order IIR (infinite impulse response) filter can also be calculated to generate an impulse response. Finally, we can excite the impulse response with a residual obtained from the original signal. The detailed procedure with equations is listed below, and the MATLAB script is attached in Appendix A.
+Since each note is impulsively excited, the handpan can be modelled with a bank of resonance filters, and each is centred at particular frequency components. To obtain the parameters (gains and decay times) for these filters, one can tap each note area slightly with one hand or a rubber mallet and record the impulse response. A set of recorded samples are stored on the Github repo [[12](https://github.com/bel0v/handpan)]. Performing FFT (Fast Fourier Transform) on each sample and finding peaks of the spectra gives information on the central frequency and amplitude of each vibration mode. We can then estimate the peak bandwidth at a level of -3 dB to find the pole radius, which relates to the quality factor Q and the decay constant a. The feedback coefficients of a second-order IIR (infinite impulse response) filter can also be calculated to generate an impulse response. Finally, we can excite the impulse response with a residual obtained from the original signal. The detailed procedure with equations is listed below, and the MATLAB script is attached in Appendix A.
 
 ### Parabolic Interpolation of Spectral Peaks
 
-The frequency resolution of an N-point DFT is $\displaystyle f_s/N$ Hz. Since the peak value is not necessary at the bin value, a parabola was fitted to the spectral data to estimate the peak and amplitude values based on the three samples nearest the peak, as illustrated in Figure 7 [[13](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
+The frequency resolution of an N-point DFT is fs/N Hz where fs is the sampling frequency. Since the peak value is not necessary at the bin value, a parabola was fitted to the spectral data to estimate the peak and amplitude values based on the three samples nearest the peak, as illustrated in Figure 7 [[13](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
 
 <p align="center">
   <img height="550" src="./img/parabolicPeak.png" alt="Figure 7. Parabolic Interpolation.">
   <figcaption align = "center"><b>Figure 7. Illustration of parabolic interpolation using the three most significant values around a peak.</b></figcaption>
 </p>
 
-A parabola can be written as $\displaystyle y(x) \mathrel{\stackrel{\Delta}{=}}a(x-p)^2+b$ in which $p$
+A parabola can be written as y(x) = a(x-p)^2 + b, in which p is the peak location in bins, b is the peak amplitude in dB, and a is the curvature. The three nearest samples 
 
-
+![y(x) = a(x-p)^2 + b](http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 the general formula for a parabola may be written as
 
@@ -159,6 +159,9 @@ end
 <p>xxx.</p>
 </audio>
 
+<!---
+https://talk.commonmark.org/t/embedded-audio-file-from-github-repo/3558
+-->
 
 <audio controls="controls">
 <source src="https://github.com/carrieeex/MUMT307-project/blob/68b3b8d8ccdbe076c0b63dc4913d0a17ab328454/sounds-original/s0-d2.mp3"/>
