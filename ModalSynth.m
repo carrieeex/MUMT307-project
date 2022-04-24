@@ -83,7 +83,7 @@ K = length(Xi);
 Xi = Xi(1:K);
 Yi = Yi(1:K);
 
-%% find 3dB Bandwidth
+%% find -3dB Bandwidth
 
 [Pxx,f2] = periodogram(y(sigIdx),rectwin(N),[],fs);
 for i = 1:length(Xi)
