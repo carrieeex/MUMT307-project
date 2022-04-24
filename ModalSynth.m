@@ -66,10 +66,10 @@ for n = 1:length(Xi)
   alpha = Y(Xi(n)-1);
   beta = Y(Xi(n));
   gamma = Y(Xi(n)+1);
-  Xii = 0.5*(alpha-gamma) / (alpha - 2*beta + gamma); 
+  Xii = 0.5 * (alpha - gamma) / (alpha - 2 * beta + gamma); 
   % interpolated bin value (-1/2 to +1/2)
   
-  Yi(n) = beta - 0.25 * (alpha-gamma) * Xii; 
+  Yi(n) = beta - 0.25 * (alpha - gamma) * Xii; 
   % interpolated peak value
   
   if Xii > 0
@@ -87,8 +87,6 @@ Yi = Yi(1:K);
 
 [Pxx,f2] = periodogram(y(sigIdx),rectwin(N),[],fs);
 for i = 1:length(Xi)
-    %figure(1)
-    %xline(Xi(i))
     fl = Xi(i)-10;
     fr = Xi(i)+10;
     bw(i) = powerbw(Pxx(f2>fl & f2 < fr), f2(f2>fl & f2 < fr));
@@ -111,19 +109,6 @@ x = [1; zeros(N-1, 1)];
 y2 = filter( b0(1), [1 a1(1) a2(1)], x );
 for n = 2:K
   y2 = y2 + filter( b0(n), [1 a1(n) a2(n)], x );
-end
-
-useResidual = false;
-if useResidual
-  Y = fft(y);
-  Y2 = fft(y2);
-  R = Y ./Y2;
-  r = 50*real(ifft(R)); 
-
-  y2 = filter( b0(1), [1 a1(1) a2(1)], r );
-  for n = 2:K
-    y2 = y2 + filter( b0(n), [1 a1(n) a2(n)], r );
-  end
 end
 
 y2 =  y2 / max(abs(y2));
