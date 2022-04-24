@@ -452,7 +452,7 @@ If one wants to record the impulse response by themselves, the experimental set-
 
 Another challenge was to adjust the bandwidth. If one uses the bandwidth obtained directly from the  `powerbw()` built-in function in MATLAB, the decay time would be too long or too short, resulting in an undesired sound. Therefore, a fudge factor was applied to the bandwidth to adjust the values. Each note has a different fudge factor, and the effect can be visualized by looking at the time domain of the impulse response of the resonance filters.
 
-Moreover, if the impulse response were not excited by the residual from the original sample, the synthesized sound would not be so realistic; it is more soft and artificial, as one can hear from the recordings in the above section.
+Moreover, if the impulse response were not excited by the residual from the original sample, the synthesized sound would not be so realistic; it is more soft and artificial, as one can hear from the recordings in the Results section.
 
 
 ## Conclusion
