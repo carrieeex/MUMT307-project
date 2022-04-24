@@ -265,19 +265,19 @@ The synthesized Note A3 excited by residual:
 
 ***
 
-The recorded sample of Note A#3: 
-<audio controls="controls" src="./sounds-original/s4-A#3.mp3">
-<p>Note A#3 - original.</p>
+The recorded sample of Note Bb3: 
+<audio controls="controls" src="./sounds-original/s4-Bb3.mp3">
+<p>Note Bb3 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note A#3 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s4-A#3-noRes.wav">
-<p>Note A#3 - filter's impulse response.</p>
+The impulse response of resonance filters of Note Bb3 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s4-Bb3-noRes.wav">
+<p>Note Bb3 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note A#3 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s4-A#3.wav">
-<p>Note A#3 - recreated.</p>
+The synthesized Note Bb3 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s4-Bb3.wav">
+<p>Note Bb3 - recreated.</p>
 </audio>
 
 ***
@@ -367,19 +367,19 @@ The synthesized Note F4 excited by residual:
 
 ***
 
-The recorded sample of Note F#4: 
-<audio controls="controls" src="./sounds-original/s12-F#4.mp3">
-<p>Note F#4 - original.</p>
+The recorded sample of Note Gb4: 
+<audio controls="controls" src="./sounds-original/s12-Gb4.mp3">
+<p>Note Gb4 - original.</p>
 </audio>
 
-The impulse response of resonance filters of Note F#4 (no residual): 
-<audio controls="controls" src="./sounds-modalSynth/s12-F#4-noRes.wav">
-<p>Note F#4 - filter's impulse response.</p>
+The impulse response of resonance filters of Note Gb4 (no residual): 
+<audio controls="controls" src="./sounds-modalSynth/s12-Gb4-noRes.wav">
+<p>Note Gb4 - filter's impulse response.</p>
 </audio>
 
-The synthesized Note F#4 excited by residual: 
-<audio controls="controls" src="./sounds-modalSynth/s12-F#4.wav">
-<p>Note F#4 - recreated.</p>
+The synthesized Note Gb4 excited by residual: 
+<audio controls="controls" src="./sounds-modalSynth/s12-Gb4.wav">
+<p>Note Gb4 - recreated.</p>
 </audio>
 
 ***
