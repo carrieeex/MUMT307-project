@@ -52,18 +52,102 @@ A handpan instrument is a group of metallic percussion instruments played with h
   <figcaption align = "center"><b>Figure 5. Sample tuning scales.</b></figcaption>
 </p>
 
-The playing technique of a handpan is to strike it with the hand, either using fingertips or the palm. Different manner can considerably influence the quality of the sounds: the spectral content, the decay time, and other features of the amplitude envelope depend on the intensity of the hit [[9](https://acoustics.org/pressroom/httpdocs/155th/wessel.htm)]. Tapping with a rubber mallet or just fingertips on a single note area can excite the fundamental, the second, and the third harmonics, as illustrated in Figure 6. The harmonic ratio of frequencies is 1:2:3, and striking one note can also make other notes vibrate [[11](https://doi.org/10.1063/1.3099586)].
+The playing technique of a handpan is to strike it with the hand, either using fingertips or the palm. Different manner can considerably influence the quality of the sounds: the spectral content, the decay time, and other features of the amplitude envelope depend on the intensity of the hit [[9](https://acoustics.org/pressroom/httpdocs/155th/wessel.htm)]. Tapping with a rubber mallet or just fingertips on a single note area can excite the fundamental, the second, and the third harmonics, as illustrated in Figure 6. The harmonic ratio of the most prominent spectral peaks is 1 : 2 : 3, and striking one note can also make other notes vibrate [[11](https://doi.org/10.1063/1.3099586)].
 
 <p align="center">
-  <img height="550" src="./img/Spectrum_Kurd2.png" alt="Figure 6. Sound spctra.">
-  <figcaption align = "center"><b>Figure 6. Sound spectra of each note in a handpan as shown in Figure 4. Each spectrum shows the ratio of harmonic frequencies in 1:2:3, and some have fourth harmonics. Small peaks in the ratio of 82 Hz (near E2) are also visible in each spectrum, which is the frequency of the cavity resonance.</b></figcaption>
+  <img height="550" src="./img/Spectrum_Kurd2.png" alt="Figure 6. Sound spectra.">
+  <figcaption align = "center"><b>Figure 6. Sound spectra of each note in a handpan as shown in Figure 4. Each spectrum shows the ratio of harmonic frequencies in 1 : 2 : 3, and some have fourth harmonics. Small peaks in the ratio of 82 Hz (near E2) are also visible in each spectrum, which is the frequency of the cavity resonance.</b></figcaption>
 </p>
 
 ## Methods
 
-Since each note is impulsively excited, the handpan can be modelled with a bank of resonance filters, and each is centred at particular frequency components. To obtain the parameters (gains and decay times) for these filters, one can tap each note area slightly with one hand or a rubber mallet and record the impulse response. A set of recorded samples are stored on the Github repo [[12](https://github.com/bel0v/handpan)]. Performing FFT (Fast Fourier Transform) on each sample and finding peaks of the spectra gives information on the central frequency and amplitude of each vibration mode. We can then estimate the peak bandwidth at a level of -3 dB to find the pole radius, which relates to the quality factor Q and the decay constant a. The feedback coefficients of a second-order IIR (infinite impulse response) filter can also be calculated to generate an impulse response. Finally, we can excite the impulse response with a residual obtained from the original signal. The detailed procedure with equations is listed below, and the MATLAB script is attached in Appendix A.
+Since each note is impulsively excited, the handpan can be modelled with a bank of resonance filters, and each is centred at particular frequency components. To obtain the parameters (gains and decay times) for these filters, one can tap each note area slightly with one hand or a rubber mallet and record the impulse response. A set of recorded samples are stored on the Github repo [[12](https://github.com/bel0v/handpan)]. Performing FFT (Fast Fourier Transform) on each sample and finding peaks of the spectra gives information on the central frequency and amplitude of each vibration mode. We can then estimate the peak bandwidth at a level of -3 dB to find the pole radius, which relates to the quality factor $\displaystyle Q$ and the decay constant $\displaystyle \alpha$. The feedback coefficients of a second-order IIR (infinite impulse response) filter can also be calculated to generate an impulse response. Finally, we can excite the impulse response with a residual obtained from the original signal. The detailed procedure with equations is listed below, and the MATLAB script is attached in Appendix A.
 
 ### Parabolic Interpolation of Spectral Peaks
+
+The frequency resolution of an N-point DFT is $\displaystyle f_s/N$ Hz. Since the peak value is not necessary at the bin value, a parabola was fitted to the spectral data to estimate the peak and amplitude values based on the three samples nearest the peak, as illustrated in Figure 7 [[13](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html)].
+
+<p align="center">
+  <img height="550" src="./img/parabolicPeak.png" alt="Figure 7. Parabolic Interpolation.">
+  <figcaption align = "center"><b>Figure 7. Illustration of parabolic interpolation using the three most significant values around a peak.</b></figcaption>
+</p>
+
+A parabola can be written as $\displaystyle y(x) \mathrel{\stackrel{\Delta}{=}}a(x-p)^2+b$ in which $p$
+
+
+
+the general formula for a parabola may be written as
+
+$\displaystyle y(x) \mathrel{\stackrel{\Delta}{=}}a(x-p)^2+b$	(6.29)
+
+The center point $ p$ gives us our interpolated peak location (in bins), while the amplitude $ b$ equals the peak amplitude (typically in dB). The curvature $ 2a$ depends on the window used and contains no information about the sinusoid. (It may, however, indicate that the peak being interpolated is not a pure sinusoid.)
+At the three samples nearest the peak, we have
+
+\begin{eqnarray*}
+y(-1) &=& \alpha \\
+y(0) &=& \beta \\
+y(1) &=& \gamma
+\end{eqnarray*}
+where we arbitrarily renumbered the bins about the peak $ -1$ , 0, and 1. Writing the three samples in terms of the interpolating parabola gives
+
+\begin{eqnarray*}
+\alpha &=& ap^2 + 2ap + a + b \\
+\beta &=& ap^2 + b \\
+\gamma &=& ap^2 - 2ap + a + b
+\end{eqnarray*}
+which implies
+
+\begin{eqnarray*}
+\alpha- \gamma &=& 4ap \\
+\Rightarrow\quad p &=& \frac{\alpha-\gamma}{4a} \\
+\Rightarrow\quad \alpha &=& ap^2 + \left(\frac{\alpha-\gamma}{2}\right)
++a+(\beta-ap^2) \\
+\Rightarrow\quad a &=& \frac{1}{2}(\alpha - 2\beta + \gamma) \\
+\end{eqnarray*}
+Hence, the interpolated peak location is given in bins6.9 (spectral samples) by
+
+$\displaystyle \zbox {p=\frac{1}{2}\frac{\alpha-\gamma}{\alpha-2\beta+\gamma}} \in [-1/2,1/2].$	(6.30)
+
+If $ k^\ast$ denotes the bin number of the largest spectral sample at the peak, then $ k^\ast+p$ is the interpolated peak location in bins. The final interpolated frequency estimate is then $ (k^\ast+p)f_s/N$ Hz, where $ f_s$ denotes the sampling rate and $ N$ is the FFT size.
+Using the interpolated peak location, the peak magnitude estimate is
+
+$\displaystyle \zbox {y(p) = \beta - \frac{1}{4}(\alpha-\gamma)p.}$
+--
+A common method for interpolating spectral magnitude peaks is to use quadratic interpolation, which involves fitting a parabola to the three most significant values around a peak.
+Given the three spectral magnitude values around a peak as $y(-1) = \alpha, y(0) = \beta, y(1) = \gamma$, the interpolated peak location (in bins) is given by
+  $\displaystyle p = \frac{1}{2}\frac{\alpha - \gamma}{\alpha - 2\beta + \gamma}
+$(16)in the range -1/2 to +1/2.
+The magnitude at the peak is given as $y(p) = \beta - \frac{1}{4}(\alpha - \gamma)p$.
+
+
+```matlab
+Y = abs(Y(1:ceil(N/2))); % keep half of fft
+Xi = [];
+threshold = 10^(40/20);  % dB converted to linear value
+for n = 2:length(Y)-2    % search for peak indices
+  if Y(n+1) <= Y(n) && Y(n-1) < Y(n) && Y(n) > threshold
+    Xi = [Xi, n];
+  end
+end
+
+Yi = zeros( size( Xi ) );
+for n = 1:length(Xi)
+  alpha = Y(Xi(n)-1);
+  beta = Y(Xi(n));
+  gamma = Y(Xi(n)+1);
+  Xii = 0.5 * (alpha - gamma) / (alpha - 2 * beta + gamma); 
+  % interpolated bin value (-1/2 to +1/2)
+  
+  Yi(n) = beta - 0.25 * (alpha - gamma) * Xii; 
+  % interpolated peak value
+  
+  if Xii > 0
+    Xi(n) = f(Xi(n)) + Xii*(f(Xi(n)+1)-f(Xi(n))); % bin value in Hz
+  else
+    Xi(n) = f(Xi(n)) + Xii*(f(Xi(n))-f(Xi(n)-1)); % bin value in Hz
+  end
+end
+```
 
 ### 3-dB Bandwidth Estimation
 
@@ -94,11 +178,11 @@ Since each note is impulsively excited, the handpan can be modelled with a bank 
 
 [1]: Morrison, Joseph Derek, and Jean-Marie Adrien. "MOSAIC: A Framework for Modal Synthesis." Computer Music Journal 17, no. 1 (1993): 45–56. https://doi.org/10.2307/3680569.
 
-[2]: Bilbao, Stefan. "Modal Synthesis", in Numerical Sound Synthesis, https://ccrma.stanford.edu/~bilbao/booktop/node14.html, online book, 2006 edition, accessed 22 April 2022.
+[2]: Bilbao, Stefan. "Modal Synthesis", in _Numerical Sound Synthesis_, https://ccrma.stanford.edu/~bilbao/booktop/node14.html, online book, 2006 edition, accessed 22 April 2022.
 
-[3]: Scavone, Gary P. "Modal Synthesis", in MUMT 307: Music Audio Computing II, https://www.music.mcgill.ca/~gary/307/week10/modal.html, online book, 2022 edition, accessed 22 April 2022.
+[3]: Scavone, Gary P. "Modal Synthesis", in _MUMT 307: Music Audio Computing II_, https://www.music.mcgill.ca/~gary/307/week10/modal.html, online book, 2022 edition, accessed 22 April 2022.
 
-[4]: Scavone, Gary P. "Digital 'Resonators'", in MUMT 307: Music Audio Computing II, http://www.music.mcgill.ca/~gary/307/week10/node4.html, online book, 2022 edition, accessed 22 April 2022.
+[4]: Scavone, Gary P. "Digital 'Resonators'", in _MUMT 307: Music Audio Computing II_, http://www.music.mcgill.ca/~gary/307/week10/node4.html, online book, 2022 edition, accessed 22 April 2022.
 
 [5]: PANArt. "Copyright: Questions and Answers". Panart (en). Accessed 22 April 2022. https://panart.ch/en/articles/copyright-questions-and-answers.
 
@@ -116,8 +200,7 @@ Since each note is impulsively excited, the handpan can be modelled with a bank 
 
 [12]: Yegor. Bel0v/Handpan. JavaScript, 2016. Accessed 22 April 2022. https://github.com/bel0v/handpan.
 
-
-
+[13]: Smith, J.O. "Quadratic Interpolation of Spectral Peaks", in _Spectral Audio Signal Processing_, https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html, online book, 2011 edition, accessed 22 April 2022.
 
 ***
 
@@ -142,7 +225,7 @@ Since each note is impulsively excited, the handpan can be modelled with a bank 
 
 ### A. Sample MATLAB script of Modal Synthesis.
 
-```Matlab
+```MATLAB
 % A Matlab script to demonstrate modal synthesis, based on course materials
 % from MUMT 307 at McGill University by Professor Gary P. Scavone.
 

@@ -36,6 +36,7 @@ title('original sound file');
 grid on
 
 N = 2^14;                       % length of FFT 
+dF = fs/N;                      % frequency resolution
 iStart = 10^4;                  % starting sample of the FFT
 sigIdx = iStart:N+iStart-1;     % index of the FFT
 Y = fft(y(sigIdx));             % FFT
