@@ -65,7 +65,7 @@ Since each note is impulsively excited, the handpan can be modelled with a bank 
 
 ### Resonance Filter Bank
 
-In order to simulate a decaying waveform, a digital resonator centred at frequency f can be designed to create an impulse response. This was achieved using a second-order IIR filter with feedback coefficients of a1 and a2, with the following specifications [[4](https://www.music.mcgill.ca/~gary/307/week10/node4.html)]:
+In order to simulate a decaying waveform, a digital resonator centred at frequency f can be designed to create an impulse response. This was achieved using second-order IIR filters with feedback coefficients of a1 and a2, with the following specifications [[4](https://www.music.mcgill.ca/~gary/307/week10/node4.html)]:
 
 - difference equation of a second-order filter: y[n] = b0 * x[n] + b1 * x[n - 1] + b2 * x[n - 2] - a1 * y[n - 1] - a2 * y[n - 2], n = 0, 1, 2, ...,
 - b0 = peak amplitude,
@@ -448,7 +448,7 @@ A song [Yan Yu Qing Dai](https://www.youtube.com/watch?v=PhtP8YuxzAQ) [烟雨青
 
 The synthesized handpan sound is very realistic, and one can barely distinguish it from the recorded sample. The frequency spectrum of each note was analyzed to find peaks in frequency and amplitude, and the bandwidth was successfully obtained from the MATLAB functions. Modal synthesis provides a simple and efficient solution to synthesize this type of metallic percussion instrument. So it can be applied to other impulsively excited objects. One of the challenges was to obtain the clean recorded samples of the impulse response of each note, as no handpan was available on hand. Most online recordings have multiple notes playing successively or simultaneously, or only one or two impulse responses from the same handpan were published. Some tapes are noisy, and the results would not be ideal as the noise could also be synthesized. Removing noise would lose some of the spectral content of the sound. Luckily, a set of relatively clean recorded samples was found on a GitHub repo.
 
-If one wants to record the impulse response by themselves, the experimental set-up can be found in Eyal Alon's master's thesis, "Analysis and Synthesis of the Handpan Sound," which details the recording procedure, analysis and synthesis of handpan sound.
+If one wants to record the impulse response by themselves, the experimental set-up can be found in Eyal Alon's master's thesis, "[Analysis and Synthesis of the Handpan Sound](https://etheses.whiterose.ac.uk/12260/1/EyalMSc.pdf)", which details the recording procedure, analysis and synthesis of handpan sound.
 
 Another challenge was to adjust the bandwidth. If one uses the bandwidth obtained directly from the  `powerbw()` built-in function in MATLAB, the decay time would be too long or too short, resulting in an undesired sound. Therefore, a fudge factor was applied to the bandwidth to adjust the values. Each note has a different fudge factor, and the effect can be visualized by looking at the time domain of the impulse response of the resonance filters.
 
