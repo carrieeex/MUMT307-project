@@ -72,16 +72,18 @@ The frequency resolution of an N-point DFT is fs/N Hz where fs is the sampling f
   <figcaption align = "center"><b>Figure 7. Illustration of parabolic interpolation using the three most significant values around a peak.</b></figcaption>
 </p>
 
-A parabola can be written as y(x) = a(x-p)^2 + b, in which p is the peak location in bins, b is the peak amplitude in dB, and a is the curvature. The three nearest samples 
+A parabola can be written as ![y(x) = a(x-p)^2 + b](http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=), in which p is the peak location in bins, b is the peak amplitude in dB, and a is the curvature. The three nearest samples 
 
 ![y(x) = a(x-p)^2 + b](http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
+<!--
 <img src="http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=" alt="test" style="height: 100px; width:100px;"/>
 
 <p align="center">
-  <img height="550" src="http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=" alt="Figure 7. Parabolic Interpolation.">
+  <img height="100" src="http://www.sciweavers.org/tex2img.php?eq=y%28x%29%20%3D%20a%28x-p%29%5E2%20%2B%20b&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=" alt="Figure 7. Parabolic Interpolation.">
   <figcaption align = "center"><b>Figure 7. Illustration of parabolic interpolation using the three most significant values around a peak.</b></figcaption>
 </p>
+-->
 
 the general formula for a parabola may be written as
 
