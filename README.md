@@ -3,6 +3,8 @@ Final project site for MUMT307-2022
 
 For the project write-up, please visit https://carrieeex.github.io/MUMT307-project/. Thank you!
 
+[Project Presentation](https://youtu.be/LZoAJ-NvjZ8)
+
 ***
 
 `ModalSynth.m` is a MATLAB script to demonstrate modal synthesis, based on course materials from [MUMT 307](https://www.music.mcgill.ca/~gary/307/) at McGill University by [Professor Gary P. Scavone](http://www.music.mcgill.ca/~gary/).
