@@ -20,7 +20,9 @@ Physical model synthesis is a technique to simulate the vibrations of objects un
 
 ### Modal Synthesis
 
-Modal synthesis is a technique to perform vibration analysis of a system by determining its mode shapes and frequencies. For example, a signal shown in Figure 1 can be seen as a superposition of various modes; each has a particular frequency [[2](https://ccrma.stanford.edu/~bilbao/booktop/node14.html)]. It can be re-assembled by combining such frequencies and selected modal information. Modal synthesis is "both effective and efficient for recreating the sounds of objects that exhibit a relatively small number of strong decaying modes" [[3](https://www.music.mcgill.ca/~gary/307/week10/modal.html)]. Some good candidates for such technique are plucked strings, a marimba struck by a mallet or a bar hit by a hammer. It can also use filter banks (i.e. a lot of filters) to simulate all the resonant modes of the system, as illustrated in Figure 2 [[4](http://www.music.mcgill.ca/~gary/307/week10/node4.html)]. Resonance filters can approximate the spectral and temporal profile of the sound: the radius of the filter, which is related to its bandwidth, gives insights into the decay time.
+Modal synthesis is a technique to perform vibration analysis of a system by determining its mode shapes and frequencies. For example, a signal shown in Figure 1 can be seen as a superposition of various modes; each has a particular frequency [[2](https://ccrma.stanford.edu/~bilbao/booktop/node14.html)]. 
+It can be re-assembled by combining such frequencies and selected modal information. Modal synthesis is "both effective and efficient for recreating the sounds of objects that exhibit a relatively small number of strong decaying modes" [[3](https://www.music.mcgill.ca/~gary/307/week10/modal.html)]. 
+Some good candidates for such technique are plucked strings, a marimba struck by a mallet or a bar hit by a hammer. It can also use filter banks (i.e. a lot of filters) to simulate all the resonant modes of the system, as illustrated in Figure 2 [[4](http://www.music.mcgill.ca/~gary/307/week10/node4.html)]. Resonance filters can approximate the spectral and temporal profile of the sound: the radius of the filter, which is related to its bandwidth, gives insights into the decay time.
 
 <p align="center">
   <img height="250" src="./img/ModalSynth.png" alt="Figure 1. Modal Synthesis of a linear, distributed time-dependent signal.">
@@ -243,7 +245,7 @@ The synthesized Note G3 excited by residual:
 
 <p align="center">
   <img height="550" src="./img/soundG3plot.png" alt="Figure 8. Time and frequency spectra of note G3.">
-  <figcaption align = "center"><b>Figure 8. Time and frequency spectra of note G3. The orginal sound file, the impulse response of the resonance filters, and the synthesized sound driven by the residual were demostrated.</b></figcaption>
+  <figcaption align = "center"><b>Figure 8. Time and frequency spectra of note G3. The orginal sound file, the impulse response of the resonance filters, and the synthesized sound driven by the residual were demonstrated.</b></figcaption>
 </p>
 
 ***
